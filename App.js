@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { GiftedChat } from "react-native-gifted-chat";
 import db from "./firebase";
+import firebase from "firebase/app";
 
 export default function App() {
   const [messages, setMessages] = useState([]);
@@ -17,6 +18,12 @@ export default function App() {
   }, []);
 
   const onSend = useCallback((messages = []) => {
+    db.collection("Chats")
+      .doc("myfirstchat")
+      .update({
+        // arrayUnion appends the message to the existing array
+        messages: firebase.firestore.FieldValue.arrayUnion(messages[0]),
+      });
     setMessages((previousMessages) =>
       GiftedChat.append(previousMessages, messages)
     );
