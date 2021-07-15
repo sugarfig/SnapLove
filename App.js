@@ -7,14 +7,17 @@ export default function App() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    db.collection("Chats")
+    let unsubscribeFromNewSnapshots = db
+      .collection("Chats")
       .doc("myfirstchat")
       .onSnapshot((snapshot) => {
         console.log("New Snapshot!");
-        console.log(snapshot.id);
-        console.log(snapshot.data());
         setMessages(snapshot.data().messages);
       });
+
+    return function cleanupBeforeUnmounting() {
+      unsubscribeFromNewSnapshots();
+    };
   }, []);
 
   const onSend = useCallback((messages = []) => {
