@@ -9,8 +9,8 @@ export default function App() {
   useEffect(() => {
     db.collection("Chats")
       .doc("myfirstchat")
-      .get()
-      .then((snapshot) => {
+      .onSnapshot((snapshot) => {
+        console.log("New Snapshot!");
         console.log(snapshot.id);
         console.log(snapshot.data());
         setMessages(snapshot.data().messages);
