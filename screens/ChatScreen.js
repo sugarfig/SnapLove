@@ -3,7 +3,7 @@ import { GiftedChat } from "react-native-gifted-chat";
 import db from "../firebase";
 import firebase from "firebase/app";
 
-export default function ChatScreen({ route }) {
+export default function ChatScreen({ route, navigation }) {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {

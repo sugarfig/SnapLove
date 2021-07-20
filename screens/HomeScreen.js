@@ -26,7 +26,7 @@ export default function HomeScreen({ navigation }) {
   }, []);
 
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         data={chatList}
         renderItem={({ item }) => (
