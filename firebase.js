@@ -1,17 +1,17 @@
-import { firebase } from "@firebase/app";
+import firebase from "@firebase/app";
 import "@firebase/auth";
 import "@firebase/firestore";
 
 // Your web app's Firebase configuration, which you copy-pasted from Step 6
-var firebaseConfig = {
-  apiKey: "AIzaSyCYn4bg-Xvr4yQNE8ff8Yv4uY_WqO41ckw",
-  authDomain: "chapsnat-jenny.firebaseapp.com",
-  projectId: "chapsnat-jenny",
-  storageBucket: "chapsnat-jenny.appspot.com",
-  messagingSenderId: "628497955369",
-  appId: "1:628497955369:web:167f67dec321bc208aba38",
+const firebaseConfig = {
+  apiKey: "AIzaSyC7CQwBSzjC_tlEiMd2Mc8Sh9Fb_Cwc1p8",
+  authDomain: "chapsnat-3f4f7.firebaseapp.com",
+  projectId: "chapsnat-3f4f7",
+  storageBucket: "chapsnat-3f4f7.appspot.com",
+  messagingSenderId: "239440555368",
+  appId: "1:239440555368:web:d7d431a3733e778d273add",
+  measurementId: "G-W4Y70B8JL2",
 };
-
 // Initialize Firebase
 
 firebase.initializeApp(firebaseConfig);

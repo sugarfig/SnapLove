@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { FlatList, Text, View, TouchableOpacity } from "react-native";
+import {
+  FlatList,
+  Text,
+  View,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
 import db from "../firebase";
 
-// should be using actual navigation types here, but haven't understood it yet
 export default function HomeScreen({ navigation }) {
   const [chatList, setChatList] = useState([]);
 
@@ -26,12 +31,24 @@ export default function HomeScreen({ navigation }) {
         data={chatList}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() => navigation.navigate("Chat", { chatDoc: item })}
+            onPress={() => navigation.navigate("Chat", { chatid: item.id })}
           >
-            <Text>{item.id}</Text>
+            <Text style={styles.item}>{item.id}</Text>
           </TouchableOpacity>
         )}
       />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
+  },
+});
