@@ -31,7 +31,7 @@ export default function HomeScreen({ navigation }) {
         data={chatList}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() => navigation.navigate("Chat", { chatid: item.id })}
+            onPress={() => navigation.navigate("Chat", { chatname: item.id })}
           >
             <Text style={styles.item}>{item.id}</Text>
           </TouchableOpacity>
