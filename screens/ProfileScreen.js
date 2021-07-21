@@ -1,17 +1,23 @@
 import firebase from "@firebase/app";
 import React, { useState } from "react";
-import Colors from "../constants/colors";
+import Colors from "../constants/Colors";
 import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+
 export default function ProfileScreen() {
+  var user = firebase.auth().currentUser;
+
   const onPressLogout = async () => {
     await firebase
       .auth()
       .signOut()
       .then(() => {
         // Sign-out successful.
+        console.log("Signed out!");
       })
       .catch((error) => {
+        var errorMessage = error.message;
         // An error happened.
+        alert(error.message);
       });
   };
 
@@ -21,59 +27,38 @@ export default function ProfileScreen() {
         <TouchableOpacity onPress={() => alert("edit!")}>
           <Image style={styles.userImage} source={{}} />
         </TouchableOpacity>
-        <Text style={styles.userNameText}>
-          {firebase.auth().currentUser.displayName}
-        </Text>
+        <Text style={styles.userNameText}>{user.displayName}</Text>
         <View style={styles.Row}>
-          <Text style={styles.emailText}>Los Angeles, California</Text>
+          <Text style={styles.descriptionText}>{user.email}</Text>
         </View>
       </View>
-
       <View style={styles.Row}>
         <TouchableOpacity
           style={[styles.buttonContainer, styles.logoutButton]}
           onPress={onPressLogout}
         >
           <Text style={styles.logoutText}>Logout</Text>
-        </TouchableOpacity>{" "}
+        </TouchableOpacity>
       </View>
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-  },
-  emailContainer: {
-    backgroundColor: "#FFF",
-    flex: 1,
-    paddingTop: 30,
   },
   headerColumn: {
     backgroundColor: "transparent",
     paddingBottom: 20,
     paddingTop: 45,
   },
-  placeIcon: {
-    color: "white",
-    fontSize: 26,
-  },
-  scroll: {
-    backgroundColor: "#FFF",
-  },
-  telContainer: {
-    backgroundColor: "#FFF",
-    flex: 1,
-    paddingTop: 30,
-  },
   Row: {
     alignItems: "center",
     flexDirection: "row",
+    justifyContent: "center",
   },
-
-  emailText: {
+  descriptionText: {
     color: "#A5A5A5",
     fontSize: 15,
     fontWeight: "600",
