@@ -1,4 +1,4 @@
-const tintColor = "#00b5ec";
+const tintColor = "#2f95dc";
 
 const colors = {
   tintColor,
@@ -14,7 +14,7 @@ const colors = {
   background: "#1F0808",
   clear: "rgba(0,0,0,0)",
   snapyellow: "#FFFC00",
-  snapblue: "#00b5ec",
+  snapblue: "#2f95dc",
 };
 
 export default colors;
