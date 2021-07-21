@@ -16,14 +16,9 @@ export default function LoginScreen({ navigation }) {
   const [password, setPassword] = useState("");
 
   const onPressLogin = async () => {
-    const user = {
-      email: email,
-      password: password,
-    };
-
     await firebase
       .auth()
-      .signInWithEmailAndPassword(user.email, user.password)
+      .signInWithEmailAndPassword(email, password)
       .then(login_Success, login_Failed);
   };
 
