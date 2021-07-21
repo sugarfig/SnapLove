@@ -47,7 +47,7 @@ export default function ChatScreen({ route }) {
         // current "blue bubble" user
         _id: firebase.auth().currentUser.uid,
         name: firebase.auth().currentUser.displayName,
-        avatar: require("../assets/avatar.png"),
+        avatar: firebase.auth().currentUser.photoURL,
       }}
       inverted={false}
       showUserAvatar={true}
