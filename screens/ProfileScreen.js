@@ -2,7 +2,6 @@ import firebase from "@firebase/app";
 import React, { useState, useEffect } from "react";
 import Colors from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
-
 import {
   Image,
   StyleSheet,
@@ -17,31 +16,14 @@ import { useActionSheet } from "@expo/react-native-action-sheet";
 import * as ImagePicker from "expo-image-picker";
 
 export default function ProfileScreen() {
+  let user = firebase.auth().currentUser;
+
   const { showActionSheetWithOptions } = useActionSheet();
   const [imageURI, setImageURI] = useState(user ? user.photoURL : "");
 
   const [modalVisible, setModalVisible] = useState(false);
-  let user = firebase.auth().currentUser;
-
   const [displayName, setDisplayName] = useState(user.displayName);
-  const [newName, setNewName] = useState("");
 
-  const onPressSaveNewName = async () => {
-    setModalVisible(!modalVisible);
-    const user = firebase.auth().currentUser;
-    setDisplayName(newName);
-
-    await user
-      .updateProfile({
-        displayName: newName,
-      })
-      .then(() => {
-        console.log("Updated display name!");
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
-  };
   const onPressLogout = async () => {
     await firebase
       .auth()
@@ -180,7 +162,11 @@ export default function ProfileScreen() {
               <Text style={styles.logoutText}>Logout</Text>
             </TouchableOpacity>
           </View>
-          <EditModal></EditModal>
+          <EditModal
+            setDisplayName={setDisplayName}
+            setModalVisible={setModalVisible}
+            modalVisible={modalVisible}
+          ></EditModal>
         </>
       ) : (
         <View></View>
@@ -189,12 +175,31 @@ export default function ProfileScreen() {
   );
 }
 
-function EditModal() {
+function EditModal(props) {
+  const [newName, setNewName] = useState("");
+
+  const onPressSaveNewName = async () => {
+    props.setModalVisible(!props.modalVisible);
+    const user = firebase.auth().currentUser;
+    props.setDisplayName(newName);
+
+    await user
+      .updateProfile({
+        displayName: newName,
+      })
+      .then(() => {
+        console.log("Updated display name!");
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
+
   return (
     <Modal
       animationType="slide"
       transparent={true}
-      visible={modalVisible}
+      visible={props.modalVisible}
       onRequestClose={() => {
         Alert.alert("Modal has been closed.");
       }}
@@ -213,7 +218,7 @@ function EditModal() {
 
           <TouchableOpacity
             onPress={() => {
-              setModalVisible(!modalVisible);
+              props.setModalVisible(!props.modalVisible);
             }}
           >
             <Text style={styles.cancelText}>Cancel</Text>
