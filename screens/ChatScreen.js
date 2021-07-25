@@ -7,16 +7,15 @@ import firebase from "@firebase/app";
 import * as ImagePicker from "expo-image-picker";
 
 export default function ChatScreen({ route }) {
-  var user = firebase.auth().currentUser;
   const [imageURI, setImageURI] = useState(null);
   const [messages, setMessages] = useState([]);
 
-  const { chatname } = route.params;
+  const { chatName, currUser } = route.params;
 
   useEffect(() => {
     let unsubscribeFromNewSnapshots = db
       .collection("Chats")
-      .doc(chatname)
+      .doc(chatName)
       .onSnapshot((snapshot) => {
         console.log("New Snapshot!");
         let newMessages = snapshot.data().messages.map((singleMessage) => {
@@ -43,7 +42,7 @@ export default function ChatScreen({ route }) {
       }
 
       db.collection("Chats")
-        .doc(chatname)
+        .doc(chatName)
         .update({
           // arrayUnion appends the message to the existing array
           messages: firebase.firestore.FieldValue.arrayUnion(messages[0]),
@@ -151,9 +150,9 @@ export default function ChatScreen({ route }) {
       onSend={(messages) => onSend(messages)}
       user={{
         // current "blue bubble" user
-        _id: user.uid,
-        name: user.displayName,
-        avatar: user.photoURL,
+        _id: currUser.uid,
+        name: currUser.displayName,
+        avatar: currUser.photoURL ? currUser.photoURL : null,
       }}
       inverted={false}
       showUserAvatar={true}

@@ -2,6 +2,7 @@ import { Text, View, TextInput, Button } from "react-native";
 import firebase from "@firebase/app";
 import Colors from "../constants/Colors";
 import React, { useState, useEffect } from "react";
+import db from "../firebase";
 
 export default function SignupScreen() {
   const [email, setEmail] = useState("");
@@ -18,9 +19,23 @@ export default function SignupScreen() {
   const onSuccess = (userCredential) => {
     console.log("SUCCESS");
     var curr_user = userCredential.user;
-    curr_user.updateProfile({
-      displayName: name,
-    });
+
+    // Update user info in "Users" collection
+    db.collection("Users")
+      .doc(curr_user.uid)
+      .set(
+        {
+          email: email,
+          displayName: name,
+        },
+        { merge: true }
+      )
+      .then(() => {
+        console.log("User info successfully updated!");
+      })
+      .catch((error) => {
+        console.error("Error updating user info: ", error);
+      });
   };
 
   const onFailure = () => {

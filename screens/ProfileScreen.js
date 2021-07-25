@@ -14,15 +14,36 @@ import {
 } from "react-native";
 import { useActionSheet } from "@expo/react-native-action-sheet";
 import * as ImagePicker from "expo-image-picker";
+import db from "../firebase";
 
 export default function ProfileScreen() {
-  let user = firebase.auth().currentUser;
+  const [currUser, setCurrUser] = useState(null);
 
   const { showActionSheetWithOptions } = useActionSheet();
-  const [imageURI, setImageURI] = useState(user ? user.photoURL : "");
+  const [imageURI, setImageURI] = useState(null);
 
   const [modalVisible, setModalVisible] = useState(false);
-  const [displayName, setDisplayName] = useState(user.displayName);
+  const [displayName, setDisplayName] = useState("");
+
+  useEffect(() => {
+    // Download curr user info
+    const currUserUID = firebase.auth().currentUser.uid;
+    db.collection("Users")
+      .doc(firebase.auth().currentUser.uid)
+      .get()
+      .then((userSnapshot) => {
+        setCurrUser({ uid: currUserUID, ...userSnapshot.data() });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (!currUser) return;
+    setImageURI(currUser.photoURL);
+    setDisplayName(currUser.displayName);
+  }, [currUser]);
 
   const onPressLogout = async () => {
     await firebase
@@ -31,6 +52,7 @@ export default function ProfileScreen() {
       .then(() => {
         // Sign-out successful.
         console.log("Signed out!");
+        setCurrUser(null);
       })
       .catch((error) => {
         // An error happened.
@@ -110,7 +132,7 @@ export default function ProfileScreen() {
 
       const uploadTask = firebase
         .storage()
-        .ref(user.uid + "/" + filename) // unique path
+        .ref(currUser.uid + "/" + filename) // unique path
         .put(blob);
       // set progress state
       uploadTask.on("state_changed", (snapshot) => {
@@ -123,9 +145,21 @@ export default function ProfileScreen() {
       await uploadTask;
       let downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
       console.log(downloadURL);
-      user.updateProfile({
-        photoURL: downloadURL,
-      });
+      await db
+        .collection("Users")
+        .doc(currUser.uid)
+        .set(
+          {
+            photoURL: downloadURL,
+          },
+          { merge: true }
+        )
+        .then(() => {
+          console.log("Updated photo URL!");
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
     } catch (e) {
       console.error(e);
     }
@@ -133,7 +167,7 @@ export default function ProfileScreen() {
 
   return (
     <View style={styles.container}>
-      {user ? (
+      {currUser ? (
         <>
           <View style={styles.headerColumn}>
             <TouchableOpacity onPress={onEditAvatar}>
@@ -151,7 +185,7 @@ export default function ProfileScreen() {
               </TouchableOpacity>
             </View>
             <View style={styles.Row}>
-              <Text style={styles.descriptionText}>{user.email}</Text>
+              <Text style={styles.descriptionText}>{currUser.email}</Text>
             </View>
           </View>
           <View style={styles.Row}>
@@ -166,6 +200,7 @@ export default function ProfileScreen() {
             setDisplayName={setDisplayName}
             setModalVisible={setModalVisible}
             modalVisible={modalVisible}
+            currUser={currUser}
           ></EditModal>
         </>
       ) : (
@@ -180,13 +215,17 @@ function EditModal(props) {
 
   const onPressSaveNewName = async () => {
     props.setModalVisible(!props.modalVisible);
-    const user = firebase.auth().currentUser;
     props.setDisplayName(newName);
 
-    await user
-      .updateProfile({
-        displayName: newName,
-      })
+    await db
+      .collection("Users")
+      .doc(props.currUser.uid)
+      .set(
+        {
+          displayName: newName,
+        },
+        { merge: true }
+      )
       .then(() => {
         console.log("Updated display name!");
       })

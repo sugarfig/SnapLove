@@ -16,19 +16,23 @@ import firebase from "@firebase/app";
 
 export default function FriendsScreen({ navigation }) {
   const [chatName, setChatName] = useState("");
-  const [userList, setUserList] = useState([]);
+  const [userList, setUserList] = useState({});
   const [selectedUsers, setSelectedUsers] = useState([]);
 
   useEffect(() => {
-    // download user list from Firebase
-    fetch("https://us-central1-chapsnat-3f4f7.cloudfunctions.net/getAllUsers")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        // Jonathan fix
-        delete data[firebase.auth().currentUser.uid];
-        setUserList(data);
+    // Download all users info from Firebase "Users" collection
+    db.collection("Users")
+      .get()
+      .then((querySnapshot) => {
+        let newUserList = {};
+
+        querySnapshot.forEach((user) => {
+          if (user.id !== firebase.auth().currentUser.uid) {
+            newUserList[user.id] = user.data().displayName;
+          }
+        });
+
+        setUserList(newUserList);
       });
   }, []);
 
