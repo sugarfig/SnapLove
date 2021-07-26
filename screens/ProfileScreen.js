@@ -27,15 +27,13 @@ export default function ProfileScreen() {
 
   useEffect(() => {
     // Download curr user info
-    const currUserUID = firebase.auth().currentUser.uid;
-    db.collection("Users")
+    // (and listen for future updates)
+    // (in case curr user decides to update their profile info)
+    return db
+      .collection("Users")
       .doc(firebase.auth().currentUser.uid)
-      .get()
-      .then((userSnapshot) => {
-        setCurrUser({ uid: currUserUID, ...userSnapshot.data() });
-      })
-      .catch((err) => {
-        console.log(err);
+      .onSnapshot((userSnapshot) => {
+        setCurrUser({ uid: userSnapshot.id, ...userSnapshot.data() });
       });
   }, []);
 

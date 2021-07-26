@@ -15,16 +15,15 @@ export default function HomeScreen({ navigation }) {
 
   useEffect(() => {
     // Download curr user info
-    db.collection("Users")
+    // (and listen for future updates)
+    // (in case curr user decides to update their profile info)
+    return db
+      .collection("Users")
       .doc(firebase.auth().currentUser.uid)
-      .get()
-      .then((userSnapshot) => {
+      .onSnapshot((userSnapshot) => {
         setCurrUser({ uid: userSnapshot.id, ...userSnapshot.data() });
-      })
-      .catch((err) => {
-        console.log(err);
       });
-  }, [firebase.auth().currentUser]);
+  }, []);
 
   useEffect(() => {
     if (!currUser) return;
