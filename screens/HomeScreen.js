@@ -78,11 +78,7 @@ function ChatItem(props) {
       onPress={props.onPress}
       pad={20}
     >
-      <Avatar
-        source={{
-          uri: "https://avatars0.githubusercontent.com/u/32242596?s=460&u=1ea285743fc4b083f95d6ee0be2e7bb8dcfc676e&v=4",
-        }}
-      />
+      <Avatar source={require("../assets/chat_placeholder.jpg")} />
       <ListItem.Content>
         <ListItem.Title>
           <Text>{props.text}</Text>
