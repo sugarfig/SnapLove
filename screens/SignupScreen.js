@@ -1,4 +1,10 @@
-import { Text, View, TextInput, Button } from "react-native";
+import {
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
 import firebase from "@firebase/app";
 import Colors from "../constants/Colors";
 import React, { useState, useEffect } from "react";
@@ -43,22 +49,117 @@ export default function SignupScreen() {
   };
 
   return (
-    <View>
-      <Text>Email:</Text>
-      <TextInput onChangeText={setEmail} />
+    <View style={styles.container}>
+      <View style={styles.headerContainer}>
+        <Text style={styles.headerText}>Welcome to Snapchat</Text>
+      </View>
+      <View style={styles.inputContainer}>
+        <Text>Name:</Text>
+        <TextInput
+          style={styles.inputs}
+          placeholder="Name"
+          keyboardType="email-address"
+          onChangeText={setName}
+        />
+      </View>
+      <View style={styles.inputContainer}>
+        <Text>Email:</Text>
+        <TextInput
+          style={styles.inputs}
+          placeholder="Email"
+          keyboardType="email-address"
+          onChangeText={setEmail}
+        />
+      </View>
 
-      <Text>Password (6+ characters):</Text>
-      <TextInput onChangeText={setPassword} secureTextEntry={true} />
+      <View style={styles.inputContainer}>
+        <Text>Password (6+ characters):</Text>
+        <TextInput
+          style={styles.inputs}
+          placeholder="Password"
+          secureTextEntry={true}
+          onChangeText={setPassword}
+        />
+      </View>
 
-      <Text>Name:</Text>
-      <TextInput onChangeText={setName} />
-
-      <Button
-        onPress={onPressCreate}
-        title="Sign up"
-        color={Colors.snapblue}
-        accessibilityLabel="Sign up"
-      />
+      <TouchableOpacity
+        style={[styles.buttonContainer, styles.signupButton]}
+        onPress={() => {
+          navigation.navigate("Signup");
+        }}
+      >
+        <Text style={styles.signupText}>Sign up</Text>
+      </TouchableOpacity>
     </View>
   );
 }
+
+const resizeMode = "center";
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    paddingTop: 180,
+    backgroundColor: "white",
+  },
+  imageContainer: {
+    width: 300,
+    height: 45,
+    marginBottom: 20,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  inputContainer: {
+    borderBottomColor: "#F5FCFF",
+    backgroundColor: "#FFFFFF",
+    borderRadius: 30,
+    borderBottomWidth: 1,
+    borderBottomWidth: 1,
+    width: 300,
+    height: 45,
+    marginBottom: 20,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  snapLogo: {
+    height: 150,
+    marginBottom: 15,
+    width: 150,
+  },
+  inputs: {
+    height: 45,
+    marginLeft: 16,
+    borderBottomColor: "#FFFFFF",
+    flex: 1,
+  },
+  buttonContainer: {
+    height: 45,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 20,
+    width: 300,
+    borderRadius: 30,
+    backgroundColor: "transparent",
+  },
+  signupButton: {
+    backgroundColor: Colors.snapblue,
+  },
+  signupText: {
+    color: "white",
+    fontWeight: "bold",
+  },
+  headerText: {
+    fontWeight: "bold",
+    fontSize: 28,
+  },
+  headerContainer: {
+    width: 300,
+    height: 45,
+    marginBottom: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});

@@ -3,7 +3,7 @@ import {
   Text,
   View,
   TextInput,
-  Button,
+  Image,
   TouchableOpacity,
 } from "react-native";
 
@@ -32,6 +32,12 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <View>
+        <Image
+          style={styles.snapLogo}
+          source={require("../assets/ghost.png")}
+        />
+      </View>
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.inputs}
@@ -77,6 +83,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: Colors.snapyellow,
+    paddingBottom: 100,
+  },
+  imageContainer: {
+    width: 300,
+    height: 45,
+    marginBottom: 20,
+    flexDirection: "row",
+    alignItems: "center",
   },
   inputContainer: {
     borderBottomColor: "#F5FCFF",
@@ -89,6 +103,11 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     flexDirection: "row",
     alignItems: "center",
+  },
+  snapLogo: {
+    height: 150,
+    marginBottom: 15,
+    width: 150,
   },
   inputs: {
     height: 45,

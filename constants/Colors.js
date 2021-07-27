@@ -2,7 +2,7 @@ const tintColor = "#2f95dc";
 
 const colors = {
   tintColor,
-  tabIconDefault: "#ccc",
+  tabIconDefault: "white",
   tabIconSelected: tintColor,
   tabBar: "#fefefe",
   errorBackground: "red",
@@ -14,7 +14,9 @@ const colors = {
   background: "#1F0808",
   clear: "rgba(0,0,0,0)",
   snapyellow: "#FFFC00",
-  snapblue: "#2f95dc",
+  snapblue: "#3CB2E2",
+  lightgray: "#ececec",
+  snapgray: "#989898",
 };
 
 export default colors;

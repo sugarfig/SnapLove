@@ -59,7 +59,7 @@ export default function FriendsScreen({ navigation }) {
               console.log("Chat successfully created!");
               setSelectedUsers([]);
               setChatName("");
-              navigation.navigate("Home");
+              navigation.navigate("Chats");
             })
             .catch((error) => {
               console.error("Error creating chat: ", error);
