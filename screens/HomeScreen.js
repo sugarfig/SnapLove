@@ -13,20 +13,38 @@ import { ListItem, Avatar } from "react-native-elements";
 import Colors from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 
+const MILLIS_IN_SEC = 1000;
+const MILLIS_IN_MIN = MILLIS_IN_SEC * 60;
+const MILLIS_IN_HOUR = MILLIS_IN_MIN * 60;
+const MILLIS_IN_DAY = MILLIS_IN_HOUR * 24;
+const MILLIS_IN_WEEK = MILLIS_IN_DAY * 7;
+
 export default function HomeScreen({ navigation }) {
   const [chatList, setChatList] = useState([]);
   const [currUser, setCurrUser] = useState(null);
+  const [currMillis, setCurrMillis] = useState(Date.now());
 
   useEffect(() => {
     // Download curr user info
     // (and listen for future updates)
     // (in case curr user decides to update their profile info)
-    return db
+
+    let unsubscribeFromNewSnapshots = db
       .collection("Users")
       .doc(firebase.auth().currentUser.uid)
       .onSnapshot((userSnapshot) => {
         setCurrUser({ uid: userSnapshot.id, ...userSnapshot.data() });
       });
+
+    // Refresh time labels every minute
+    let intervalID = setInterval(
+      () => setCurrMillis(Date.now()),
+      MILLIS_IN_MIN
+    );
+    return function cleanupBeforeUnmounting() {
+      unsubscribeFromNewSnapshots();
+      clearInterval(intervalID);
+    };
   }, []);
 
   useEffect(() => {
@@ -42,6 +60,7 @@ export default function HomeScreen({ navigation }) {
         newChat.id = doc.id;
         newChatList.push(newChat);
       });
+      newChatList.sort((a, b) => a.lastUpdated <= b.lastUpdated);
       setChatList(newChatList);
     });
 
@@ -62,7 +81,8 @@ export default function HomeScreen({ navigation }) {
                 currUser: currUser,
               })
             }
-            text={item.id}
+            item={item}
+            currMillis={currMillis}
           />
         )}
       />
@@ -83,35 +103,46 @@ export default function HomeScreen({ navigation }) {
   );
 }
 
-function ChatItem(props) {
+function ChatItem({ onPress, item, currMillis }) {
   return (
     <ListItem
       Component={TouchableOpacity}
       containerStyle={styles.chatItemContainer}
       disabledStyle={{ opacity: 0.5 }}
-      onPress={props.onPress}
+      onPress={onPress}
       pad={20}
     >
       <Avatar source={require("../assets/chat_placeholder.jpg")} />
       <ListItem.Content>
         <ListItem.Title>
-          <Text>{props.text}</Text>
+          <Text>{item.id}</Text>
         </ListItem.Title>
         <ListItem.Subtitle style={styles.subtitle}>
-          {/* Note: the dates are hardcoded! */}
           <Image
             style={styles.chatIcon}
             source={require("../assets/bluechat.png")}
           />
           <Text style={styles.chatDescription}>
             {" "}
-            Tap to chat ⋅ {Math.floor(Math.random() * 5 + 1)}h{" "}
+            Tap to chat ⋅ {getTimeLabel(currMillis - item.lastUpdated)}{" "}
           </Text>
         </ListItem.Subtitle>
       </ListItem.Content>
     </ListItem>
   );
 }
+
+const getTimeLabel = (millis_diff) => {
+  if (millis_diff < 0) millis_diff = 0;
+  if (millis_diff < MILLIS_IN_HOUR)
+    return `${Math.floor(millis_diff / MILLIS_IN_MIN)}m`;
+  if (millis_diff < MILLIS_IN_DAY)
+    return `${Math.floor(millis_diff / MILLIS_IN_HOUR)}h`;
+  if (millis_diff < MILLIS_IN_WEEK)
+    return `${Math.floor(millis_diff / MILLIS_IN_DAY)}d`;
+  if (millis_diff >= MILLIS_IN_WEEK)
+    return `${Math.floor(millis_diff / MILLIS_IN_WEEK)}w`;
+};
 
 const styles = StyleSheet.create({
   container: {

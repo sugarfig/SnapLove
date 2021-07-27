@@ -46,6 +46,7 @@ export default function ChatScreen({ route }) {
         .update({
           // arrayUnion appends the message to the existing array
           messages: firebase.firestore.FieldValue.arrayUnion(messages[0]),
+          lastUpdated: Date.now(),
         });
       setMessages((previousMessages) =>
         GiftedChat.append(previousMessages, messages)

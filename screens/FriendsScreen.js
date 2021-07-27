@@ -55,6 +55,7 @@ export default function FriendsScreen({ navigation }) {
             .set({
               messages: [],
               users: [...selectedUsers, firebase.auth().currentUser.uid],
+              lastUpdated: Date.now(),
             })
             .then(() => {
               console.log("Chat successfully created!");
