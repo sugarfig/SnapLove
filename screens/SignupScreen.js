@@ -110,6 +110,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+  snapLogo: {
+    height: 150,
+    marginBottom: 15,
+    width: 150,
+  },
   inputContainer: {
     borderBottomColor: "#F5FCFF",
     backgroundColor: "#FFFFFF",
@@ -121,11 +126,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     flexDirection: "row",
     alignItems: "center",
-  },
-  snapLogo: {
-    height: 150,
-    marginBottom: 15,
-    width: 150,
   },
   inputs: {
     height: 45,

@@ -1,13 +1,12 @@
 import {
-  Text,
   View,
   TextInput,
-  Button,
   StyleSheet,
   KeyboardAvoidingView,
+  TouchableOpacity,
 } from "react-native";
+import { Text } from "react-native-elements";
 import CustomMultiPicker from "react-native-multiple-select-list";
-
 import * as React from "react";
 import { useState, useEffect } from "react";
 import Colors from "../constants/Colors";
@@ -75,38 +74,44 @@ export default function FriendsScreen({ navigation }) {
           options={userList}
           search={true} // should show search bar?
           multiple={true} // allow multiple select
-          placeholder={"Search"}
+          placeholder={"To: "}
           placeholderTextColor={"#757575"}
           returnValue={"value"} // label or value
           callback={(selected) => {
             selected = selected.filter((user) => user !== undefined);
             setSelectedUsers(selected);
           }} // callback, array of selected items
-          rowBackgroundColor={"#eee"}
-          rowHeight={45}
+          rowBackgroundColor={"white"}
+          rowHeight={55}
           rowRadius={5}
           searchIconName="ios-checkmark"
-          searchIconColor="red"
-          searchIconSize={30}
-          iconColor={"#00a2dd"}
+          iconColor={Colors.snapblue}
           iconSize={30}
           selectedIconName={"ios-checkmark-circle-outline"}
           unselectedIconName={"ios-radio-button-off-outline"}
-          scrollViewHeight={300}
+          scrollViewHeight={250}
         />
       </View>
       <KeyboardAvoidingView behavior="position">
-        <View style={styles.newChatContainer}>
-          <Text>New chat name:</Text>
-          <TextInput style={styles.chatNameInput} onChangeText={setChatName} />
-          <Button
-            onPress={onPressCreateChat}
-            title="Create Chat"
-            color={Colors.snapblue}
-            accessibilityLabel="Create Chat"
-            disabled={chatName.length < 1 || selectedUsers.length < 1}
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.inputs}
+            placeholder="New Chat Name"
+            keyboardType="email-address"
+            onChangeText={setChatName}
           />
         </View>
+        <TouchableOpacity
+          style={
+            chatName.length < 1 || selectedUsers.length < 1
+              ? [styles.buttonContainer, styles.disabledButton]
+              : [styles.buttonContainer, styles.button]
+          }
+          onPress={onPressCreateChat}
+          disabled={chatName.length < 1 || selectedUsers.length < 1}
+        >
+          <Text style={styles.buttonText}>Create Chat</Text>
+        </TouchableOpacity>
       </KeyboardAvoidingView>
     </View>
   );
@@ -114,18 +119,37 @@ export default function FriendsScreen({ navigation }) {
 
 const offset = 16;
 const styles = StyleSheet.create({
-  newChatContainer: {
-    margin: offset,
-    padding: offset,
-    borderRadius: offset,
-    backgroundColor: Colors.snapyellow,
+  friendListContainer: {
+    padding: 10,
   },
-  chatNameInput: {
-    height: offset * 2,
+  inputContainer: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 8,
+    height: 45,
     margin: offset,
-    paddingHorizontal: offset,
-    borderColor: "#111111",
-    borderWidth: 1,
-    fontSize: offset,
+  },
+  inputs: {
+    height: 45,
+    marginLeft: 16,
+    borderBottomColor: "#FFFFFF",
+    flex: 1,
+  },
+  buttonContainer: {
+    height: 45,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: offset,
+    borderRadius: 8,
+    backgroundColor: "transparent",
+  },
+  button: {
+    backgroundColor: Colors.snapblue,
+  },
+  disabledButton: {
+    backgroundColor: Colors.snapgray,
+  },
+  buttonText: {
+    color: "white",
   },
 });

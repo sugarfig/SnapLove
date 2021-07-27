@@ -16,7 +16,7 @@ const colors = {
   snapyellow: "#FFFC00",
   snapblue: "#3CB2E2",
   lightgray: "#ececec",
-  snapgray: "#989898",
+  snapgray: "#B8BEC6",
 };
 
 export default colors;
