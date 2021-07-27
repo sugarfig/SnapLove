@@ -7,7 +7,7 @@ import TabBarIcon from "../components/TabBarIcon";
 
 import CameraScreen from "../screens/CameraScreen";
 import HomeScreen from "../screens/HomeScreen";
-import ProfileScreen from "../screens/ProfileScreen";
+import StoriesScreen from "../screens/StoriesScreen";
 import Colors from "../constants/Colors";
 
 const BottomTab = createBottomTabNavigator();
@@ -29,6 +29,8 @@ export default function BottomTabNavigator({ navigation, route }) {
         showLabel: true,
         style: {
           backgroundColor: "black",
+          paddingTop: 5,
+          borderColor: "black",
         },
       }}
     >
@@ -53,12 +55,12 @@ export default function BottomTabNavigator({ navigation, route }) {
         }}
       />
       <BottomTab.Screen
-        name="Profile"
-        component={ProfileScreen}
+        name="Stories"
+        component={StoriesScreen}
         options={{
-          title: "Your Profile",
+          title: "Your Stories",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="person-circle-outline" />
+            <TabBarIcon focused={focused} name="people-outline" />
           ),
         }}
       />
@@ -76,6 +78,8 @@ function getHeaderTitle(route) {
       return "Chat";
     case "Profile":
       return "Profile";
+    case "Stories":
+      return "Stories";
     case "Camera":
       return "Camera";
     case "Friends":
