@@ -177,8 +177,8 @@ export default function ProfileScreen() {
                 <Ionicons
                   name={"create-outline"}
                   size={25}
-                  style={{ marginBottom: 5, marginLeft: 3 }}
-                  color={Colors.tabIconDefault}
+                  style={{ marginBottom: 8, marginLeft: 3 }}
+                  color={Colors.snapgray}
                 />
               </TouchableOpacity>
             </View>
