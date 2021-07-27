@@ -66,7 +66,7 @@ export default function HomeScreen({ navigation }) {
           />
         )}
       />
-      <View style={styles.Row}>
+      <View style={styles.addButton}>
         <TouchableOpacity
           style={styles.Circle}
           onPress={() => navigation.navigate("Friends")}
@@ -75,7 +75,7 @@ export default function HomeScreen({ navigation }) {
             name={"add-circle"}
             size={60}
             style={{ marginBottom: 8 }}
-            color={Colors.snapgray}
+            color={Colors.snapblue}
           />
         </TouchableOpacity>
       </View>
@@ -142,10 +142,9 @@ const styles = StyleSheet.create({
   chatDescription: {
     marginLeft: 3,
   },
-  Row: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    paddingBottom: 20,
-    paddingRight: 35,
+  addButton: {
+    position: "absolute",
+    bottom: 20,
+    right: 20,
   },
 });
