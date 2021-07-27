@@ -20,19 +20,21 @@ export default function FriendsScreen({ navigation }) {
 
   useEffect(() => {
     // Download all users info from Firebase "Users" collection
-    db.collection("Users")
-      .get()
-      .then((querySnapshot) => {
-        let newUserList = {};
+    // (and listen for future updates)
+    // (in case someone joins the app in the mean time)
+    // (or updates their display name)
+    return db.collection("Users").onSnapshot((querySnapshot) => {
+      let newUserList = {};
 
-        querySnapshot.forEach((user) => {
-          if (user.id !== firebase.auth().currentUser.uid) {
-            newUserList[user.id] = user.data().displayName;
-          }
-        });
-
-        setUserList(newUserList);
+      querySnapshot.forEach((user) => {
+        // Don't put current user in list
+        if (user.id !== firebase.auth().currentUser.uid) {
+          newUserList[user.id] = user.data().displayName;
+        }
       });
+
+      setUserList(newUserList);
+    });
   }, []);
 
   const onPressCreateChat = () => {
@@ -53,6 +55,7 @@ export default function FriendsScreen({ navigation }) {
             .set({
               messages: [],
               users: [...selectedUsers, firebase.auth().currentUser.uid],
+              lastUpdated: Date.now(),
             })
             .then(() => {
               console.log("Chat successfully created!");
