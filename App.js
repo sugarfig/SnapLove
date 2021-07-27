@@ -4,6 +4,7 @@ import { StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import ChatScreen from "./screens/ChatScreen";
+import FriendsScreen from "./screens/FriendsScreen";
 import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
@@ -27,11 +28,12 @@ function App() {
     <ActionSheetProvider>
       <View style={styles.container}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Tabs">
+          <Stack.Navigator initialRouteName="Tabs" mode="card">
             {isSignedIn ? (
               <>
                 <Stack.Screen name="Tabs" component={BottomTabNavigator} />
                 <Stack.Screen name="Chat" component={ChatScreen} />
+                <Stack.Screen name="Friends" component={FriendsScreen} />
               </>
             ) : (
               <>

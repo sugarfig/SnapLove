@@ -11,6 +11,7 @@ import db from "../firebase";
 import firebase from "@firebase/app";
 import { ListItem, Avatar } from "react-native-elements";
 import Colors from "../constants/Colors";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function HomeScreen({ navigation }) {
   const [chatList, setChatList] = useState([]);
@@ -65,6 +66,19 @@ export default function HomeScreen({ navigation }) {
           />
         )}
       />
+      <View style={styles.Row}>
+        <TouchableOpacity
+          style={styles.Circle}
+          onPress={() => navigation.navigate("Friends")}
+        >
+          <Ionicons
+            name={"add-circle"}
+            size={60}
+            style={{ marginBottom: 8 }}
+            color={Colors.snapgray}
+          />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -102,7 +116,7 @@ function ChatItem(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
   },
   item: {
     padding: 10,
@@ -127,5 +141,11 @@ const styles = StyleSheet.create({
   },
   chatDescription: {
     marginLeft: 3,
+  },
+  Row: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    paddingBottom: 20,
+    paddingRight: 35,
   },
 });

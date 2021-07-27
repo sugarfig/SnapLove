@@ -4,9 +4,10 @@ import * as React from "react";
 import { StyleSheet } from "react-native";
 
 import TabBarIcon from "../components/TabBarIcon";
+
+import CameraScreen from "../screens/CameraScreen";
 import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
-import FriendsScreen from "../screens/FriendsScreen";
 import Colors from "../constants/Colors";
 
 const BottomTab = createBottomTabNavigator();
@@ -32,22 +33,22 @@ export default function BottomTabNavigator({ navigation, route }) {
       }}
     >
       <BottomTab.Screen
-        name="Friends"
-        component={FriendsScreen}
-        options={{
-          title: "Your Friends",
-          tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="logo-snapchat" />
-          ),
-        }}
-      />
-      <BottomTab.Screen
         name="Chats"
         component={HomeScreen}
         options={{
           title: "Your Chats",
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="chatbox-ellipses-outline" />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Camera"
+        component={CameraScreen}
+        options={{
+          title: "Camera",
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name="camera-outline" />
           ),
         }}
       />
@@ -75,6 +76,8 @@ function getHeaderTitle(route) {
       return "Chat";
     case "Profile":
       return "Profile";
+    case "Camera":
+      return "Camera";
     case "Friends":
       return "Friends";
   }

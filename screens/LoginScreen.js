@@ -33,10 +33,7 @@ export default function LoginScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View>
-        <Image
-          style={styles.snapLogo}
-          source={require("../assets/ghost.png")}
-        />
+        <Image style={styles.snapLogo} source={require("../assets/icon.png")} />
       </View>
       <View style={styles.inputContainer}>
         <TextInput
