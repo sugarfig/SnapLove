@@ -4,25 +4,18 @@ import {
   ImageBackground,
   StyleSheet,
   ScrollView,
-  View,
-  Image,
   Text,
-  SafeAreaView,
+  View,
   StatusBar,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function StoriesScreen() {
+export default function MapScreen() {
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <Image
-          source={require("../assets/Stories.png")}
-          style={styles.scrollImage}
-        />
-      </ScrollView>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <Text style={styles.text}>This is the map screen!</Text>
+    </View>
   );
 }
 
@@ -32,9 +25,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     paddingTop: StatusBar.currentHeight,
   },
-  scrollImage: {
-    resizeMode: "contain",
-    width: "100%",
-    overflow: "visible",
+  text: {
+    fontSize: 50,
   },
 });
