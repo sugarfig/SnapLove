@@ -8,10 +8,13 @@ import TabBarIcon from "../components/TabBarIcon";
 import CameraScreen from "../screens/CameraScreen";
 import HomeScreen from "../screens/HomeScreen";
 import StoriesScreen from "../screens/StoriesScreen";
+import SpotlightScreen from "../screens/SpotlightScreen";
+import MapScreen from "../screens/MapScreen";
+
 import Colors from "../constants/Colors";
 
 const BottomTab = createBottomTabNavigator();
-const INITIAL_ROUTE_NAME = "Chats";
+const INITIAL_ROUTE_NAME = "Camera";
 
 export default function BottomTabNavigator({ navigation, route }) {
   // Set the header title on the parent stack navigator depending on the
@@ -34,6 +37,16 @@ export default function BottomTabNavigator({ navigation, route }) {
         },
       }}
     >
+      <BottomTab.Screen
+        name="Map"
+        component={MapScreen}
+        options={{
+          title: "Snap Map",
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name="map-outline" />
+          ),
+        }}
+      />
       <BottomTab.Screen
         name="Chats"
         component={HomeScreen}
@@ -64,6 +77,16 @@ export default function BottomTabNavigator({ navigation, route }) {
           ),
         }}
       />
+      <BottomTab.Screen
+        name="Spotlight"
+        component={SpotlightScreen}
+        options={{
+          title: "Spotlight",
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name="play-outline" />
+          ),
+        }}
+      />
     </BottomTab.Navigator>
   );
 }
@@ -72,6 +95,8 @@ function getHeaderTitle(route) {
   const routeName = getFocusedRouteNameFromRoute(route) ?? INITIAL_ROUTE_NAME;
 
   switch (routeName) {
+    case "Map":
+      return "Map";
     case "Chats":
       return "Chats";
     case "Chat":
@@ -84,6 +109,8 @@ function getHeaderTitle(route) {
       return "Camera";
     case "Friends":
       return "Friends";
+    case "Spotlight":
+      return "Spotlight";
   }
 }
 
