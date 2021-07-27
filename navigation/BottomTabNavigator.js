@@ -2,6 +2,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import * as React from "react";
 import { StyleSheet } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { Ionicons } from "@expo/vector-icons";
 
 import TabBarIcon from "../components/TabBarIcon";
 
@@ -18,7 +20,27 @@ export default function BottomTabNavigator({ navigation, route }) {
   // currently active tab. Learn more in the documentation:
   // https://reactnavigation.org/docs/en/screen-options-resolution.html
   React.useLayoutEffect(() => {
-    navigation.setOptions({ headerTitle: getHeaderTitle(route) });
+    const navigationOptions = { headerTitle: getHeaderTitle(route) };
+    if (getHeaderTitle(route) === "Stories") {
+      navigationOptions.headerRight = () => (
+        <TouchableOpacity
+          style={styles.Circle}
+          onPress={() => {
+            navigation.navigate("Profile");
+          }}
+        >
+          <Ionicons
+            name={"person-circle-outline"}
+            size={40}
+            style={{ marginRight: 5 }}
+            color={Colors.snapblue}
+          />
+        </TouchableOpacity>
+      );
+    } else {
+      navigationOptions.headerRight = null;
+    }
+    navigation.setOptions(navigationOptions);
   }, [navigation, route]);
 
   return (

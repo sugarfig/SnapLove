@@ -11,23 +11,7 @@ export default function StoriesScreen({ navigation }) {
         source={require("../assets/Stories.png")}
         resizeMode="cover"
         style={styles.image}
-      >
-        <View style={styles.Row}>
-          <TouchableOpacity
-            style={styles.Circle}
-            onPress={() => {
-              navigation.navigate("Profile");
-            }}
-          >
-            <Ionicons
-              name={"person-circle-outline"}
-              size={40}
-              style={{ marginTop: 8, marginLeft: 16 }}
-              color={Colors.snapblue}
-            />
-          </TouchableOpacity>
-        </View>
-      </ImageBackground>
+      ></ImageBackground>
     </View>
   );
 }
