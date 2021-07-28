@@ -15,7 +15,7 @@ export default function SpotlightScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>
-        This is the spotlight screen! I'll add an image background later
+        This is the spotlight screen! 
       </Text>
     </View>
   );
