@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { Image, Platform } from "react-native";
+import { Image, Platform, View, Button } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { GiftedChat, Actions } from "react-native-gifted-chat";
 import db from "../firebase";
@@ -85,6 +85,19 @@ export default function ChatScreen({ route }) {
     return downloadURL;
   };
 
+  // Replace if using SNAP MINI...
+  const renderAccessory = null;
+  // const renderAccessory = (props) => (
+  //   <View>
+  //     <Button
+  //       onPress={() => {
+  //         alert("Launching Snap Mini...");
+  //       }}
+  //       title={"Launch Snap Mini"}
+  //     />
+  //   </View>
+  // );
+
   const renderActions = (props) => {
     return (
       <Actions
@@ -159,6 +172,7 @@ export default function ChatScreen({ route }) {
       showUserAvatar={true}
       renderUsernameOnMessage={true}
       renderActions={renderActions}
+      renderAccessory={renderAccessory}
     />
   );
 }
