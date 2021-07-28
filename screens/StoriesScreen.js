@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Colors from "../constants/Colors";
 import {
   ImageBackground,
   StyleSheet,
@@ -10,8 +9,6 @@ import {
   SafeAreaView,
   StatusBar,
 } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { Ionicons } from "@expo/vector-icons";
 
 export default function StoriesScreen() {
   return (

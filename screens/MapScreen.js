@@ -1,31 +1,95 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Colors from "../constants/Colors";
-import {
-  ImageBackground,
-  StyleSheet,
-  ScrollView,
-  Text,
-  View,
-  StatusBar,
-} from "react-native";
+import { StyleSheet, View } from "react-native";
+import * as Location from "expo-location";
+import MapView, { Marker } from "react-native-maps";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
+import colors from "../constants/Colors";
+
+const LOS_ANGELES_REGION = {
+  latitude: 34.0522,
+  longitude: -118.2437,
+  latitudeDelta: 0.0922,
+  longitudeDelta: 0.0421,
+};
 
 export default function MapScreen() {
+  const [currLocation, setCurrLocation] = useState(null);
+  const mapView = useRef(null);
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setCurrLocation(location.coords);
+    })();
+  }, []);
+
+  const goToCurrLocation = () => {
+    mapView?.current.animateToRegion(
+      {
+        latitude: currLocation.latitude,
+        longitude: currLocation.longitude,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      },
+      1000
+    );
+  };
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>This is the map screen!</Text>
-    </View>
+    <>
+      <MapView
+        ref={mapView}
+        style={styles.map}
+        initialRegion={LOS_ANGELES_REGION}
+      >
+        {currLocation ? (
+          <Marker
+            coordinate={currLocation}
+            title={"Current Location"}
+            description={"You are here!"}
+          />
+        ) : null}
+      </MapView>
+      {currLocation ? (
+        <View style={styles.locateButtonContainer}>
+          <TouchableOpacity
+            style={styles.locateButton}
+            onPress={goToCurrLocation}
+          >
+            <Ionicons
+              name={"navigate"}
+              size={40}
+              color={Colors.snapblue}
+              style={{ marginTop: 5, marginLeft: 3 }}
+            />
+          </TouchableOpacity>
+        </View>
+      ) : null}
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-    paddingTop: StatusBar.currentHeight,
+  map: {
+    ...StyleSheet.absoluteFillObject,
   },
-  text: {
-    fontSize: 50,
+  locateButtonContainer: {
+    position: "absolute",
+    bottom: 20,
+    right: 20,
+  },
+  locateButton: {
+    height: 50,
+    width: 50,
+    borderRadius: 25,
+    backgroundColor: colors.snapyellow,
   },
 });
