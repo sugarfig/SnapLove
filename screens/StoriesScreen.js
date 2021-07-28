@@ -1,37 +1,36 @@
 import React, { useState, useEffect } from "react";
 import {
-  ImageBackground,
   StyleSheet,
   ScrollView,
   View,
   Image,
   Text,
   SafeAreaView,
+  ImageBackground,
   StatusBar,
 } from "react-native";
-
+const image = require("../assets/Stories.png");
 export default function StoriesScreen() {
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <Image
-          source={require("../assets/Stories.png")}
-          style={styles.scrollImage}
-        />
-      </ScrollView>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <ImageBackground source={image} style={styles.image}></ImageBackground>
+    </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
-    paddingTop: StatusBar.currentHeight,
+    flexDirection: "column",
   },
-  scrollImage: {
-    resizeMode: "contain",
-    width: "100%",
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    top: 0,
     overflow: "visible",
+  },
+  text: {
+    color: "grey",
+    fontSize: 30,
+    fontWeight: "bold",
   },
 });
