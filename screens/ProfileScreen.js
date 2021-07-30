@@ -25,6 +25,11 @@ export default function ProfileScreen() {
   const [modalVisible, setModalVisible] = useState(false);
   const [displayName, setDisplayName] = useState("");
 
+
+  const [displayPronoun, setDisplayPronoun] = useState("pronouns");
+  const [pronounModalVisible,setPronounModalVisble] = useState(false);
+
+
   useEffect(() => {
     // Download curr user info
     // (and listen for future updates)
@@ -183,6 +188,17 @@ export default function ProfileScreen() {
               </TouchableOpacity>
             </View>
             <View style={styles.Row}>
+              <Text style={styles.descriptionText}>{displayPronoun}</Text>
+              <TouchableOpacity onPress={() => setPronounModalVisble(true)}>
+                <Ionicons
+                  name={"create-outline"}
+                  size={25}
+                  style={{ marginBottom: 8, marginLeft: 3 }}
+                  color={Colors.snapgray}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.Row}>
               <Text style={styles.descriptionText}>{currUser.email}</Text>
             </View>
           </View>
@@ -200,11 +216,59 @@ export default function ProfileScreen() {
             modalVisible={modalVisible}
             currUser={currUser}
           ></EditModal>
+          <EditPronounModal
+          setDisplayPronoun={setDisplayPronoun}
+          setPronounModalVisible={setPronounModalVisble}
+          pronounModalVisible={pronounModalVisible}
+          ></EditPronounModal>
         </>
       ) : (
         <View></View>
       )}
     </View>
+  );
+}
+
+function EditPronounModal(props) {
+  const [newPronoun, setPronoun] = useState("");
+
+  const onPressSaveNewName = async () => {
+    props.setPronounModalVisible(!props.pronounModalVisible);
+    props.setDisplayPronoun(newPronoun);
+
+  };
+
+  return (
+    <Modal
+      animationType="slide"
+      transparent={true}
+      visible={props.pronounModalVisible}
+      onRequestClose={() => {
+        Alert.alert("Modal has been closed.");
+      }}
+    >
+      <View style={styles.centeredView}>
+        <View style={styles.modalView}>
+          <Text style={styles.modalText}>Pronouns:</Text>
+          <TextInput autoFocus={true} onChangeText={setPronoun}/>
+
+          <TouchableOpacity
+            style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+            onPress={onPressSaveNewName}
+          >
+            <Text style={styles.textStyle}>Save</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => {
+              props.setPronounModalVisible(!props.pronounModalVisible);
+            }}
+          >
+            <Text style={styles.cancelText}>Cancel</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </Modal>
   );
 }
 
@@ -250,7 +314,7 @@ function EditModal(props) {
             style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
             onPress={onPressSaveNewName}
           >
-            <Text style={styles.textStyle}>Save New Name</Text>
+            <Text style={styles.textStyle}>Save</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
