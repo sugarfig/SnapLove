@@ -8,6 +8,7 @@ import { Ionicons } from "@expo/vector-icons";
 import colors from "../constants/Colors";
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Dimensions } from "react-native";
+import CircleIcon from '../components/CircleIcon'
 
 
 const bitmoji = require("../assets/bitmoji.png");
@@ -118,6 +119,7 @@ export default function MapScreen() {
             />
           </View>
           <RBSheet
+            height={400}
             ref={refRBSheet}
             closeOnDragDown={true}
             closeOnPressMask={false}
@@ -130,6 +132,15 @@ export default function MapScreen() {
               }
             }}
           >
+            <View>
+              <Text style={{marginBottom: 20, marginLeft: 10, fontSize: 25}}>Find Resources</Text>
+              <View style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
+                <CircleIcon name='school-outline' text='scholarships'></CircleIcon>
+                <CircleIcon name='home-outline' text='workshops'></CircleIcon>
+                <CircleIcon name='search-outline' text='search'></CircleIcon>
+              </View>
+              
+            </View>
             
           </RBSheet>
         </View>
