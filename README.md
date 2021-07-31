@@ -1,3 +1,3 @@
 # chapsnat
 
-this is a bad readme right now. 
+Better read me. 
