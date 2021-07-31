@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Colors from "../constants/Colors";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import * as Location from "expo-location";
 import MapView, { Marker } from "react-native-maps";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -73,6 +73,15 @@ export default function MapScreen() {
           </TouchableOpacity>
         </View>
       ) : null}
+      {currLocation ? (
+        <View style={styles.submitButtomContainer}>
+          <TouchableOpacity
+            style={styles.submitButton}
+          >
+            <Text style={styles.submitText}>submit</Text>
+          </TouchableOpacity>
+        </View>
+      ) : null}
     </>
   );
 }
@@ -92,4 +101,24 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     backgroundColor: colors.snapyellow,
   },
+  submitButtomContainer: {
+    position: "absolute",
+    top: 20,
+    right: 20,
+    display: 'flex',
+    alignSelf: 'flex-end',
+  },
+  submitButton: {
+    height: 50,
+    width: 50,
+    borderRadius: 25,
+    backgroundColor: 'gray',
+  },
+  submitText: {
+    fontSize: 14,
+    top: 15,
+    display: 'flex',
+    alignSelf:'center',
+
+  }
 });
