@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Colors from "../constants/Colors";
-import { StyleSheet, View, Text, Button } from "react-native";
+import { StyleSheet, View, Text, Image, Modal } from "react-native";
 import * as Location from "expo-location";
 import MapView, { Marker } from "react-native-maps";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -9,6 +9,8 @@ import colors from "../constants/Colors";
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Dimensions } from "react-native";
 
+
+const bitmoji = require("../assets/bitmoji.png");
 var width = Dimensions.get('window').width; //full width
 // var height = Dimensions.get('window').height; //full height
 const LOS_ANGELES_REGION = {
@@ -19,6 +21,7 @@ const LOS_ANGELES_REGION = {
 };
 
 export default function MapScreen() {
+  const [snapLove, setSnapLove] = useState(false);
   const refRBSheet = useRef();
   const [currLocation, setCurrLocation] = useState(null);
   const mapView = useRef(null);
@@ -48,6 +51,12 @@ export default function MapScreen() {
     );
   };
 
+  const turnOnSnapLove = () =>{
+    setSnapLove(true);
+    console.log(currLocation)
+
+  }
+
   return (
     <>
       <MapView
@@ -60,7 +69,10 @@ export default function MapScreen() {
             coordinate={currLocation}
             title={"Current Location"}
             description={"You are here!"}
-          />
+          ><Image source={bitmoji}
+            style={{width: 125, height: 125}}
+            resizeMode="contain"></Image>
+          </Marker>
         ) : null}
       </MapView>
       {currLocation ? (
@@ -83,7 +95,13 @@ export default function MapScreen() {
           <TouchableOpacity
             style={styles.submitButton}
           >
-            <Text style={styles.submitText}>request</Text>
+            <Text style={styles.submitText}>suggest</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.submitButton}
+            onPress={turnOnSnapLove}
+          >
+            <Text style={styles.submitText}>Snap Love</Text>
           </TouchableOpacity>
         </View>
       ) : null}
@@ -143,18 +161,21 @@ const styles = StyleSheet.create({
     right: 20,
     display: 'flex',
     alignSelf: 'flex-end',
+    
   },
   submitButton: {
     height: 50,
     width: 50,
     borderRadius: 25,
     backgroundColor: 'gray',
+    marginBottom: 10,
   },
   submitText: {
-    fontSize: 14,
+    fontSize: 13,
     top: 15,
     display: 'flex',
     alignSelf:'center',
+    
   },
   resourcesContainer: {
     width: width,
