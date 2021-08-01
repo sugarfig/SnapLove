@@ -42,9 +42,14 @@ function InfoPage(props) {
                         <Text style = {styles.buisnessLocation}> {props.buisnessLocation} </Text>
                         <Text style= {styles.buisnessWebsite}> {props.buisnessWebsite} </Text>
                     </View>
-                    
-                    <Text style={{marginBottom: 20, marginLeft: 10, fontSize: 25}}>Find Resources</Text>
+                    {/* <Text style={{marginBottom: 20, marginLeft: 10, fontSize: 25}}>Find Resources</Text> */}
                 </View>
+                <View>
+                    <Text style = {styles.buisnessDetails}> {props.buisnessDetails}</Text>
+                </View>
+                
+                    
+                {/* </View> */}
          
                 {/* <View style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
                     <CircleIcon name='school-outline' text='scholarships'></CircleIcon>
@@ -58,6 +63,22 @@ function InfoPage(props) {
 }
 
 const styles = StyleSheet.create({
+    buisnessDetails: {
+        position: "absolute",
+        width: 349,
+        height: 52,
+        left: 34,
+        top: 210,
+
+        // fontFamily: "Avenir",
+        fontStyle: "normal",
+        fontWeight: "normal",
+        fontSize: 12,
+        lineHeight: 16,
+
+        color: "#000000",
+    },
+
     buisnessContainer: {
         position: "absolute",
         width: 414,
