@@ -110,7 +110,7 @@ export default function MapScreen() {
 
       {currLocation ? (
         <View>
-          <InfoPage buisnessName = {"Please work"}/>
+          <InfoPage buisnessName = {"Please work"} buisnessType = {"Workshop"} buisnessLocation = {"1235 Lanston Blvd, Los Angeles, CA 90321"} buisnessWebsite = {"mirrormemoirs.org"}/>
           {/* <View style={styles.resourcesContainer}>
             <Ionicons
                   name={"menu-outline"}

@@ -7,7 +7,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Colors from "../constants/Colors";
 import CircleIcon from '../components/CircleIcon'
  
-export default function InfoPage(props) {
+function InfoPage(props) {
   const refRBSheet = useRef();
   return (
     <View>
@@ -34,14 +34,23 @@ export default function InfoPage(props) {
             }
             }}
         >
-            <View>
-                <Text style = {{fontSize: 25}}> {props.buisnessName} </Text>
-                <Text style={{marginBottom: 20, marginLeft: 10, fontSize: 25}}>Find Resources</Text>
-                <View style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
+            <View >
+                <View style = {styles.buisnessContainer}>
+                    <Text style = {styles.buisnessName}> {props.buisnessName} </Text>
+                    <Text style = {styles.buisnessType}> {props.buisnessType} </Text>
+                    <View>
+                        <Text style = {styles.buisnessLocation}> {props.buisnessLocation} </Text>
+                        <Text style= {styles.buisnessWebsite}> {props.buisnessWebsite} </Text>
+                    </View>
+                    
+                    <Text style={{marginBottom: 20, marginLeft: 10, fontSize: 25}}>Find Resources</Text>
+                </View>
+         
+                {/* <View style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
                     <CircleIcon name='school-outline' text='scholarships'></CircleIcon>
                     <CircleIcon name='home-outline' text='workshops'></CircleIcon>
                     <CircleIcon name='search-outline' text='search'></CircleIcon>
-                </View>
+                </View> */}
             </View>
         </RBSheet>
     </View>
@@ -49,6 +58,79 @@ export default function InfoPage(props) {
 }
 
 const styles = StyleSheet.create({
+    buisnessContainer: {
+        position: "absolute",
+        width: 414,
+        height: 155,
+        left: 0,
+        top: 23,
+        backgroundColor: "#F2ECEC",
+    },
+
+    buisnessType: {
+        position: "absolute",
+        width: 68,
+        height: 14,
+        left: 151,
+        top: 99,
+
+        // fontFamily: "Avenir",
+        fontStyle: "normal",
+        fontWeight: "normal",
+        fontSize: 11,
+        lineHeight: 15,
+
+        color: "#A4A4A4",
+    },
+
+    buisnessName: {
+        position: "absolute",
+        width: 233,
+        height: 32,
+        left: 150,
+        top: 75,
+
+        // fontFamily: 'Arial', //NEED TO FIGURE OUT HOW TO LOAD FONTTTT !!!
+        fontStyle: "normal",
+        fontWeight: '900',
+        fontSize: 18,
+        lineHeight: 30,
+
+        color: "#000000",
+    },
+
+    buisnessLocation: {
+        position: "absolute",
+        width: 166,
+        height: 61,
+        left: 151,
+        top: 115,
+        
+        // fontFamily: "Avenir",
+        fontStyle: "normal",
+        fontWeight: '500',
+        fontSize: 14,
+        lineHeight: 19,
+        
+        color: "#000000",
+    },
+
+    buisnessWebsite: {
+        position: "absolute",
+        width: 94,
+        height: 27,
+        left: 151,
+        top: 154,
+
+        // fontFamily: "Avenir",
+        fontStyle: "normal",
+        fontWeight: "normal",
+        fontSize: 11,
+        lineHeight: 15,
+
+        color: "#000000",
+    },
+
     resourcesContainer: {
         width: 50,
         backgroundColor: "white",
@@ -59,6 +141,7 @@ const styles = StyleSheet.create({
     }
 });
 
+export default InfoPage;
 
 // import React, { useState, useEffect, useRef, Component } from "react";
 // import RBSheet from "react-native-raw-bottom-sheet";
