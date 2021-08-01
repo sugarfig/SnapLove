@@ -110,7 +110,7 @@ export default function MapScreen() {
 
       {currLocation ? (
         <View>
-          <InfoPage/>
+          <InfoPage buisnessName = {"Please work"}/>
           {/* <View style={styles.resourcesContainer}>
             <Ionicons
                   name={"menu-outline"}

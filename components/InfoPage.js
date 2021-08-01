@@ -7,7 +7,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Colors from "../constants/Colors";
 import CircleIcon from '../components/CircleIcon'
  
-export default function Example() {
+export default function InfoPage(props) {
   const refRBSheet = useRef();
   return (
     <View>
@@ -35,6 +35,7 @@ export default function Example() {
             }}
         >
             <View>
+                <Text style = {{fontSize: 25}}> {props.buisnessName} </Text>
                 <Text style={{marginBottom: 20, marginLeft: 10, fontSize: 25}}>Find Resources</Text>
                 <View style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
                     <CircleIcon name='school-outline' text='scholarships'></CircleIcon>
