@@ -44,8 +44,15 @@ function InfoPage(props) {
                     </View>
                     {/* <Text style={{marginBottom: 20, marginLeft: 10, fontSize: 25}}>Find Resources</Text> */}
                 </View>
+
                 <View>
                     <Text style = {styles.buisnessDetails}> {props.buisnessDetails}</Text>
+                </View>
+
+                <View style = {styles.buttons}>
+                    <CircleIcon name = "school-outline" text = {props.button1}></CircleIcon>
+                    <CircleIcon name = "home-outline" text = {props.button2}></CircleIcon>
+                    <CircleIcon name = "search-outline" text= {props.button3}></CircleIcon>
                 </View>
                 
                     
@@ -63,6 +70,14 @@ function InfoPage(props) {
 }
 
 const styles = StyleSheet.create({
+    buttons: {
+        height: 48,
+        top: 289,
+        display:'flex', 
+        flexDirection:'row', 
+        justifyContent:'space-around',
+    },
+
     buisnessDetails: {
         position: "absolute",
         width: 349,
