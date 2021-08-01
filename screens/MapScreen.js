@@ -9,6 +9,7 @@ import colors from "../constants/Colors";
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Dimensions } from "react-native";
 import CircleIcon from '../components/CircleIcon'
+import InfoPage from "../components/InfoPage";
 
 
 const bitmoji = require("../assets/bitmoji.png");
@@ -109,7 +110,8 @@ export default function MapScreen() {
 
       {currLocation ? (
         <View>
-          <View style={styles.resourcesContainer}>
+          <InfoPage/>
+          {/* <View style={styles.resourcesContainer}>
             <Ionicons
                   name={"menu-outline"}
                   size={40}
@@ -118,6 +120,7 @@ export default function MapScreen() {
                   onPress={() => refRBSheet.current.open()}
             />
           </View>
+            
           <RBSheet
             height={400}
             ref={refRBSheet}
@@ -142,8 +145,8 @@ export default function MapScreen() {
               
             </View>
             
-          </RBSheet>
-        </View>
+          </RBSheet> */}
+         </View>
       ) : null}
 
 
