@@ -105,8 +105,8 @@ const styles = StyleSheet.create({
         height: 120,
         left: 14,
         top: 86,
-        // backgroundColor: "#9C9797",
-        // borderRadius: 25,
+        backgroundColor: "#9C9797",
+        borderRadius: 60,
     },
     // iconButton: {
     //     // position: "absolute",
