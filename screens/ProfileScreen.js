@@ -173,9 +173,11 @@ export default function ProfileScreen() {
       {currUser ? (
         <>
           <View style={styles.headerColumn}>
+
             <TouchableOpacity onPress={onEditAvatar}>
               <Image style={styles.userImage} source={{ uri: imageURI }} />
             </TouchableOpacity>
+
             <View style={styles.Row}>
               <Text style={styles.userNameText}>{displayName}</Text>
               <TouchableOpacity onPress={() => setModalVisible(true)}>
@@ -187,6 +189,7 @@ export default function ProfileScreen() {
                 />
               </TouchableOpacity>
             </View>
+            
             <View style={styles.Row}>
               <Text style={styles.descriptionText}>{displayPronoun}</Text>
               <TouchableOpacity onPress={() => setPronounModalVisble(true)}>

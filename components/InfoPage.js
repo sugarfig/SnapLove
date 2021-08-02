@@ -6,6 +6,8 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "../constants/Colors";
 import CircleIcon from '../components/CircleIcon'
+import { TouchableOpacity } from "react-native-gesture-handler";
+// import { Ionicons } from "@expo/vector-icons";
  
 function InfoPage(props) {
   const refRBSheet = useRef();
@@ -36,12 +38,38 @@ function InfoPage(props) {
         >
             <View >
                 <View style = {styles.buisnessContainer}>
+
+
+                    <TouchableOpacity style = {styles.storiesButton}>
+                        <Text style = {styles.topRightButtonText}>Image of Location</Text>
+                    </TouchableOpacity>
+
                     <Text style = {styles.buisnessName}> {props.buisnessName} </Text>
                     <Text style = {styles.buisnessType}> {props.buisnessType} </Text>
+
+
+
                     <View>
+
+                        
                         <Text style = {styles.buisnessLocation}> {props.buisnessLocation} </Text>
                         <Text style= {styles.buisnessWebsite}> {props.buisnessWebsite} </Text>
+
+                        {/* <TouchableOpacity style = {styles.iconButton}>
+                            <Ionicons name = {props.iconName}></Ionicons>
+                        </TouchableOpacity> */}
+
+
+
                     </View>
+                    <View>
+                        <TouchableOpacity style = {styles.topRightButton}>
+                            <Text style = {styles.topRightButtonText}>{props.topRightButton}</Text>
+                        </TouchableOpacity>
+                    </View>
+
+
+
                     {/* <Text style={{marginBottom: 20, marginLeft: 10, fontSize: 25}}>Find Resources</Text> */}
                 </View>
 
@@ -50,9 +78,9 @@ function InfoPage(props) {
                 </View>
 
                 <View style = {styles.buttons}>
-                    <CircleIcon name = "school-outline" text = {props.button1}></CircleIcon>
-                    <CircleIcon name = "home-outline" text = {props.button2}></CircleIcon>
-                    <CircleIcon name = "search-outline" text= {props.button3}></CircleIcon>
+                    <CircleIcon text = {props.button1}></CircleIcon>
+                    <CircleIcon text = {props.button2}></CircleIcon>
+                    <CircleIcon text= {props.button3}></CircleIcon>
                 </View>
                 
                     
@@ -70,6 +98,51 @@ function InfoPage(props) {
 }
 
 const styles = StyleSheet.create({
+
+    storiesButton: {
+        position: "absolute",
+        width: 118.57,
+        height: 120,
+        left: 14,
+        top: 86,
+        // backgroundColor: "#9C9797",
+        // borderRadius: 25,
+    },
+    // iconButton: {
+    //     // position: "absolute",
+    //     width: 11.91,
+    //     // height: 5.63,
+    //     left: 255,
+
+    //     fontFamily: "Roboto",
+    //     fontStyle: "normal",
+    //     fontWeight: "normal",
+    //     fontSize: 4,
+    //     lineHeight: 5,
+
+    //     color: "#000000",
+
+    // },
+
+    topRightButtonText: {
+        fontSize: 13,
+        top: 15,
+        display: 'flex',
+        alignSelf:'center',
+        
+    },
+
+    topRightButton: {
+        // position: "absolute",
+        width: 45,
+        height: 48,
+        left: 335,
+        top: 20,
+
+        backgroundColor: "#9C9797",
+        borderRadius: 34,
+    },
+
     buttons: {
         height: 48,
         top: 289,

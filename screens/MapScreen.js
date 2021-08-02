@@ -119,6 +119,8 @@ export default function MapScreen() {
           button1 = {"scholarships"}
           button2 = {"workshops"}
           button3 = {"search"}
+          topRightButton = {"Save"}
+          // iconName = 'school-outline'
           />
           {/* <View style={styles.resourcesContainer}>
             <Ionicons

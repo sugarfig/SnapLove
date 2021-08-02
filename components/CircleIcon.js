@@ -7,17 +7,18 @@ function CircleIcon(props){
     return (
         <View style={{display:'flex', alignItems:'center'}}>
             <TouchableOpacity style={styles.button} >
-                <Ionicons name={props.name}
-                size={30}></Ionicons>
+                <Text>{props.text}</Text>
+                {/* <Ionicons name={props.name}
+                size={30}></Ionicons> */}
             </TouchableOpacity>
-            <Text>{props.text}</Text>
+            
         </View>
     )
 }
 const styles = StyleSheet.create({
     button:{
-        height: 50,
-        width: 50,
+        height: 48,
+        width: 90,
         borderRadius: 25,
         backgroundColor: 'gray',
         marginBottom: 10,
