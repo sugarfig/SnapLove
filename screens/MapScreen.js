@@ -14,7 +14,8 @@ import Pin from '../components/Pin'
 import Card from '../components/Card'
 
 const bitmoji = require("../assets/bitmoji.png");
-const icon = require("../assets/icon.png");
+
+
 var width = Dimensions.get('window').width; //full width
 // var height = Dimensions.get('window').height; //full height
 const LOS_ANGELES_REGION = {
@@ -80,7 +81,7 @@ export default function MapScreen() {
             </Marker>
 
             {coordinates.map(coor => {
-              return <Pin key={coor.key} location={coor}></Pin>
+              return <Pin key={coor.key} location={coor.coordinate} icon={coor.icon}></Pin>
             })}
           </View>
           
@@ -124,7 +125,7 @@ export default function MapScreen() {
             <Ionicons
                   name={"menu-outline"}
                   size={40}
-                  color={Colors.snapblue}
+                  color={'black'}
                   style={{ marginTop: 5, marginLeft: 3 }}
                   onPress={() => refRBSheet.current.open()}
             />
@@ -148,17 +149,17 @@ export default function MapScreen() {
               
                 <View  style={{flex: 1}}>
                   <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-                    <Text style={{marginBottom: 20, marginLeft: 10, fontSize: 25}}>Find Resources</Text>
+                    <Text style={{marginBottom: 20, marginLeft: 10, fontSize: 25, fontWeight: 'bold'}}>Find Resources</Text>
                     <View style={{display:'flex', flexDirection:'row', justifyContent:'space-around', marginBottom: 30}}>
-                      <CircleIcon name='school-outline' text='scholarships'></CircleIcon>
-                      <CircleIcon name='home-outline' text='workshops'></CircleIcon>
-                      <CircleIcon name='search-outline' text='search'></CircleIcon>
-                      <CircleIcon name='search-outline' text='jobs'></CircleIcon>
+                      <CircleIcon  text='scholarships'></CircleIcon>
+                      <CircleIcon  text='workshops'></CircleIcon>
+                      <CircleIcon  text='search'></CircleIcon>
+                      <CircleIcon  text='jobs'></CircleIcon>
                     </View>
                     <View style={{display:'flex', alignItems:'center'}}>
-                      <Card icon="bandage-outline" title="Title" description="Description"></Card>
-                      <Card icon="bandage-outline" title="Title" description="Description"></Card>
-                      <Card icon="bandage-outline" title="Title" description="Description"></Card>
+                      <Card title="Mirror Memiors" description="Description"></Card>
+                      <Card title="It Gets Better" description="Description"></Card>
+                      <Card title="Acess Points" description="Description"></Card>
                     </View>
                   </ScrollView>
                 </View>

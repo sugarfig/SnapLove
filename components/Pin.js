@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import MapView, { Marker } from "react-native-maps";
 
 
-const icon = require("../assets/icon.png");
+
 function Pin(props){
     return(
         <Marker
@@ -13,8 +13,8 @@ function Pin(props){
         description={"You are here!"}
       >
           <TouchableOpacity>
-            <Image source={icon}
-            style={{width: 50, height: 50}}
+            <Image source={props.icon}
+            style={{width: 80, height: 80}}
             resizeMode="contain"></Image>
         </TouchableOpacity>
       </Marker>
