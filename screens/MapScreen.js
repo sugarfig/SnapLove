@@ -157,11 +157,10 @@ export default function MapScreen() {
           buisnessLocation = {"1235 Lanston Blvd, Los Angeles, CA 90321"} 
           buisnessWebsite = {"mirrormemoirs.org"}
           buisnessDetails = {"This workshop incorporates various practitioners, scholars, and organizers from different backgrounds who have dedicated to disability and transformative justice movements for many years."}
-          button1 = {"scholarships"}
-          button2 = {"workshops"}
-          button3 = {"search"}
+          button1 = {"..."}
+          button2 = {"Invite friends"}
+          button3 = {"Going?s"}
           topRightButton = {"Save"}
-          storiesImage = {"../assets/avatar.png"}
           // iconName = 'school-outline'
           />
 
