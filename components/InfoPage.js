@@ -64,8 +64,10 @@ function InfoPage(props) {
                             <Text style = {styles.topRightButtonText}>{props.topRightButton}</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style = {styles.storiesButton}>
-                            <Text style = {styles.topRightButtonText}>Image of Location</Text>
+                        <TouchableOpacity>
+                            <Image style = {styles.storiesImage} source = {require("../assets/avatar.png")}/> 
+                            {/* FIND A WAY TO GET ANY IMAGE TO SHOW */}
+                            {/* <Text style = {styles.topRightButtonText}>Image of Location</Text> */}
                         </TouchableOpacity>
                     </View>
 
@@ -100,15 +102,23 @@ function InfoPage(props) {
 
 const styles = StyleSheet.create({
 
-    storiesButton: {
-        // position: "absolute",
+    storiesImage: {
         width: 118.57,
         height: 120,
-        left: 14,
-        top: 15,
-        backgroundColor: "#9C9797",
+        left: 12,
+        top: 3,
         borderRadius: 80,
     },
+
+    // storiesButton: {
+    //     // position: "absolute",
+    //     width: 118.57,
+    //     height: 120,
+    //     left: 14,
+    //     top: 15,
+    //     backgroundColor: "transparent",
+    //     borderRadius: 80,
+    // },
     // iconButton: {
     //     // position: "absolute",
     //     width: 11.91,
@@ -227,10 +237,10 @@ const styles = StyleSheet.create({
 
     buisnessWebsite: {
         position: "absolute",
-        width: 94,
+        width: 97,
         height: 27,
         left: 151,
-        top: 154,
+        top: 140,
 
         // fontFamily: "Avenir",
         fontStyle: "normal",

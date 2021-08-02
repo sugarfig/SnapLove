@@ -161,6 +161,7 @@ export default function MapScreen() {
           button2 = {"workshops"}
           button3 = {"search"}
           topRightButton = {"Save"}
+          storiesImage = {"../assets/avatar.png"}
           // iconName = 'school-outline'
           />
 
