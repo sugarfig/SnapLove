@@ -8,7 +8,7 @@ import { Ionicons } from "@expo/vector-icons";
 import colors from "../constants/Colors";
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Dimensions } from "react-native";
-import CircleIcon from '../components/CircleIcon'
+import CircleIcon from '../components/CircleIcon';
 import InfoPage from "../components/InfoPage";
 
 
@@ -110,19 +110,7 @@ export default function MapScreen() {
 
       {currLocation ? (
         <View>
-          <InfoPage 
-          buisnessName = {"Please work"} 
-          buisnessType = {"Workshop"} 
-          buisnessLocation = {"1235 Lanston Blvd, Los Angeles, CA 90321"} 
-          buisnessWebsite = {"mirrormemoirs.org"}
-          buisnessDetails = {"This workshop incorporates various practitioners, scholars, and organizers from different backgrounds who have dedicated to disability and transformative justice movements for many years."}
-          button1 = {"scholarships"}
-          button2 = {"workshops"}
-          button3 = {"search"}
-          topRightButton = {"Save"}
-          // iconName = 'school-outline'
-          />
-          {/* <View style={styles.resourcesContainer}>
+          <View style={styles.resourcesContainer}>
             <Ionicons
                   name={"menu-outline"}
                   size={40}
@@ -131,7 +119,6 @@ export default function MapScreen() {
                   onPress={() => refRBSheet.current.open()}
             />
           </View>
-            
           <RBSheet
             height={400}
             ref={refRBSheet}
@@ -156,9 +143,27 @@ export default function MapScreen() {
               
             </View>
             
-          </RBSheet> */}
-         </View>
+          </RBSheet>
+        </View>
       ) : null}
+      {currLocation ? (
+        <View>
+          <InfoPage 
+          buisnessName = {"Please work"} 
+          buisnessType = {"Workshop"} 
+          buisnessLocation = {"1235 Lanston Blvd, Los Angeles, CA 90321"} 
+          buisnessWebsite = {"mirrormemoirs.org"}
+          buisnessDetails = {"This workshop incorporates various practitioners, scholars, and organizers from different backgrounds who have dedicated to disability and transformative justice movements for many years."}
+          button1 = {"scholarships"}
+          button2 = {"workshops"}
+          button3 = {"search"}
+          topRightButton = {"Save"}
+          // iconName = 'school-outline'
+          />
+
+        </View>
+
+      ):null}
 
 
     </>
