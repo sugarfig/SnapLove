@@ -100,13 +100,13 @@ function InfoPage(props) {
 const styles = StyleSheet.create({
 
     storiesButton: {
-        position: "absolute",
+        // position: "absolute",
         width: 118.57,
         height: 120,
         left: 14,
         top: 86,
-        // backgroundColor: "#9C9797",
-        // borderRadius: 25,
+        backgroundColor: "#9C9797",
+        borderRadius: 80,
     },
     // iconButton: {
     //     // position: "absolute",
