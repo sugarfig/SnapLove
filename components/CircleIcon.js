@@ -7,8 +7,8 @@ function CircleIcon(props){
     return (
         <View style={{display:'flex', alignItems:'center'}}>
             <TouchableOpacity style={styles.button} >
-                {/* <Ionicons name={props.name}
-                size={32}></Ionicons> */}
+                <Ionicons name={props.name}
+                size={32}></Ionicons>
             </TouchableOpacity>
             <Text style={{fontWeight:'bold'}}>{props.text}</Text>
         </View>

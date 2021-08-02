@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Colors from "../constants/Colors";
-import { StyleSheet, View, Text, Image, ScrollView } from "react-native";
+import { StyleSheet, View, Text, Image, ScrollView} from "react-native";
 import * as Location from "expo-location";
 import MapView, { Marker } from "react-native-maps";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -12,6 +12,7 @@ import CircleIcon from '../components/CircleIcon'
 import coordinates from '../constants/Coordinates'
 import Pin from '../components/Pin'
 import Card from '../components/Card'
+import DropDownPicker from 'react-native-dropdown-picker';
 
 const bitmoji = require("../assets/bitmoji.png");
 
@@ -58,7 +59,6 @@ export default function MapScreen() {
 
   const turnOnSnapLove = () =>{
     setSnapLove(true);
-    console.log(currLocation)
 
   }
 
@@ -79,13 +79,16 @@ export default function MapScreen() {
               style={{width: 125, height: 125}}
               resizeMode="contain"></Image>
             </Marker>
-
+          </View>
+          
+         
+        ) : null}
+        {(currLocation && snapLove) ? (
+          <View>
             {coordinates.map(coor => {
               return <Pin key={coor.key} location={coor.coordinate} icon={coor.icon}></Pin>
             })}
           </View>
-          
-         
         ) : null}
       </MapView>
       {currLocation ? (
@@ -110,12 +113,26 @@ export default function MapScreen() {
           >
             <Text style={styles.submitText}>suggest</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.submitButton}
-            onPress={turnOnSnapLove}
+          <View style={styles.dropDownContainer}>
+            <TouchableOpacity
+              style={styles.snapLoveButton}
+              onPress={turnOnSnapLove}
+            > 
+              <View style={{display:'flex',justifyContent:'space-around'}}>
+                <View style={{backgroundColor:'rgba(0,0, 0, 0.41)',width: 130, height: 50, borderRadius: 550, right:150 }}>
+                  <Text style={{textAlign:'center', display:'flex', marginTop: 15,color:'white',fontWeight:'bold',fontSize:18}}>SnapLOVE</Text>
+                </View>
+                <View style={styles.submitText}></View>
+              </View>
+        
+            </TouchableOpacity>
+            <TouchableOpacity
+            style={styles.snapLoveButton}
           >
-            <Text style={styles.submitText}>Snap Love</Text>
+            <Ionicons style={{top:8,display: 'flex', alignSelf:'center',}} size={30} name="chevron-up-outline" color='white'></Ionicons>
           </TouchableOpacity>
+          </View>
+         
         </View>
       ) : null}
 
@@ -193,7 +210,7 @@ const styles = StyleSheet.create({
   submitButtomContainer: {
     position: "absolute",
     top: 20,
-    right: 20,
+    right: 10,
     display: 'flex',
     alignSelf: 'flex-end',
     
@@ -204,13 +221,21 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     backgroundColor: 'gray',
     marginBottom: 10,
+    marginLeft: 5,
   },
   submitText: {
     fontSize: 13,
     top: 15,
     display: 'flex',
     alignSelf:'center',
-    
+  },
+  snapLoveButton:{
+    height: 50,
+    width: 50,
+    borderRadius: 25,
+    backgroundColor: '#C4C4C4',
+    margin: 5,
+    top: 3,
   },
   resourcesContainer: {
     width: width,
@@ -218,6 +243,11 @@ const styles = StyleSheet.create({
     display:'flex',
     alignItems: 'center',
     top: 676,
-    
+  },
+  dropDownContainer: {
+    height: 130,
+    width: 60,
+    backgroundColor: 'rgba(0,0, 0, 0.41)',
+    borderRadius: 50
   }
 });
