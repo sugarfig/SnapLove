@@ -76,6 +76,7 @@ export default function MapScreen() {
             resizeMode="contain"></Image>
           </Marker>
         ) : null}
+
       </MapView>
       {currLocation ? (
         <View style={styles.locateButtonContainer}>
@@ -119,6 +120,7 @@ export default function MapScreen() {
                   onPress={() => refRBSheet.current.open()}
             />
           </View>
+
           <RBSheet
             height={400}
             ref={refRBSheet}
@@ -146,6 +148,7 @@ export default function MapScreen() {
           </RBSheet>
         </View>
       ) : null}
+
       {currLocation ? (
         <View>
           <InfoPage 

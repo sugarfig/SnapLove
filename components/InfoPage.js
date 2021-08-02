@@ -40,10 +40,6 @@ function InfoPage(props) {
                 <View style = {styles.buisnessContainer}>
 
 
-                    <TouchableOpacity style = {styles.storiesButton}>
-                        <Text style = {styles.topRightButtonText}>Image of Location</Text>
-                    </TouchableOpacity>
-
                     <Text style = {styles.buisnessName}> {props.buisnessName} </Text>
                     <Text style = {styles.buisnessType}> {props.buisnessType} </Text>
 
@@ -63,8 +59,13 @@ function InfoPage(props) {
 
                     </View>
                     <View>
+
                         <TouchableOpacity style = {styles.topRightButton}>
                             <Text style = {styles.topRightButtonText}>{props.topRightButton}</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style = {styles.storiesButton}>
+                            <Text style = {styles.topRightButtonText}>Image of Location</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
         width: 118.57,
         height: 120,
         left: 14,
-        top: 86,
+        top: 15,
         backgroundColor: "#9C9797",
         borderRadius: 80,
     },
