@@ -13,6 +13,8 @@ import coordinates from '../constants/Coordinates'
 import Pin from '../components/Pin'
 import Card from '../components/Card'
 import DropDownPicker from 'react-native-dropdown-picker';
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+
 
 const bitmoji = require("../assets/bitmoji.png");
 
@@ -26,11 +28,12 @@ const LOS_ANGELES_REGION = {
   longitudeDelta: 0.0421,
 };
 
-export default function MapScreen() {
+export default function MapScreen({ navigation, route }) {
   const [snapLove, setSnapLove] = useState(false);
   const refRBSheet = useRef();
   const [currLocation, setCurrLocation] = useState(null);
   const mapView = useRef(null);
+  
 
   useEffect(() => {
     (async () => {
@@ -59,7 +62,10 @@ export default function MapScreen() {
 
   const turnOnSnapLove = () =>{
     setSnapLove(true);
-
+  }
+  function getRoute(route){
+    const routeName = getFocusedRouteNameFromRoute(route) ?? null;
+    console.log(routeName)
   }
 
   return (
@@ -110,6 +116,7 @@ export default function MapScreen() {
         <View style={styles.submitButtomContainer}>
           <TouchableOpacity
             style={styles.submitButton}
+            onPress={getRoute}
           >
             <Text style={styles.submitText}>suggest</Text>
           </TouchableOpacity>
