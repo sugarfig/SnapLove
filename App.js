@@ -8,8 +8,11 @@ import FriendsScreen from "./screens/FriendsScreen";
 import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
 import ProfileScreen from "./screens/ProfileScreen";
+
 import RequestForm from './screens/RequestFormScren';
 import EditCatergory from './screens/EditCategoryScreen';
+import InviteFriendsScreen from "./screens/InviteFriendsScreen";
+
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import firebase from "@firebase/app";
 import { ActionSheetProvider } from "@expo/react-native-action-sheet";
@@ -38,8 +41,12 @@ function App() {
                 <Stack.Screen name="Chat" component={ChatScreen} />
                 <Stack.Screen name="Friends" component={FriendsScreen} />
                 <Stack.Screen name="Profile" component={ProfileScreen} />
+
                 <Stack.Screen name="RequestForm" component={RequestForm} />
                 <Stack.Screen name="EditCategory" component={EditCatergory} />
+
+                <Stack.Screen name="InviteFriends" component={InviteFriendsScreen}/>
+
               </>
             ) : (
               <>

@@ -8,12 +8,16 @@ import { Ionicons } from "@expo/vector-icons";
 import colors from "../constants/Colors";
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Dimensions } from "react-native";
+
 import CircleIcon from '../components/CircleIcon'
 import coordinates from '../constants/Coordinates'
 import Pin from '../components/Pin'
 import Card from '../components/Card'
 import DropDownPicker from 'react-native-dropdown-picker';
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+
+import InfoPage from "../components/InfoPage";
+
 
 
 const bitmoji = require("../assets/bitmoji.png");
@@ -31,7 +35,9 @@ const LOS_ANGELES_REGION = {
   longitudeDelta: 0.0421,
 };
 
+
 export default function MapScreen({ navigation, route }) {
+
   const [snapLove, setSnapLove] = useState(false);
   const refRBSheet = useRef();
   const [currLocation, setCurrLocation] = useState(null);
@@ -65,10 +71,12 @@ export default function MapScreen({ navigation, route }) {
 
   const turnOnSnapLove = () =>{
     setSnapLove(true);
+
   }
   function changeToRequestForm(){
     navigation.navigate("RequestForm");
   }
+
 
   return (
     <>
@@ -98,6 +106,7 @@ export default function MapScreen({ navigation, route }) {
             })}
           </View>
         ) : null}
+
       </MapView>
       {currLocation ? (
         <View style={styles.locateButtonContainer}>
@@ -156,6 +165,7 @@ export default function MapScreen({ navigation, route }) {
                   onPress={() => refRBSheet.current.open()}
             />
           </View>
+
           <RBSheet
             height={400}
             ref={refRBSheet}
@@ -190,6 +200,23 @@ export default function MapScreen({ navigation, route }) {
           </RBSheet>
         </View>
       ) : null}
+
+      {currLocation ? (
+        <View>
+          <InfoPage 
+          buisnessName = {"Please work"} 
+          buisnessType = {"Workshop"} 
+          buisnessLocation = {"1235 Lanston Blvd, Los Angeles, CA 90321"} 
+          buisnessWebsite = {"mirrormemoirs.org"}
+          buisnessDetails = {"This workshop incorporates various practitioners, scholars, and organizers from different backgrounds who have dedicated to disability and transformative justice movements for many years."}
+          topRightButton = {"Save"}
+          test={()=>{navigation.navigate("InviteFriends")}}
+          // iconName = 'school-outline'
+          />
+
+        </View>
+
+      ):null}
 
 
     </>

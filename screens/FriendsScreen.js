@@ -61,7 +61,7 @@ export default function FriendsScreen({ navigation }) {
               console.log("Chat successfully created!");
               setSelectedUsers([]);
               setChatName("");
-              navigation.navigate("Chats");
+              navigation.navigate("Chats"); //changes screen to chat screen.
             })
             .catch((error) => {
               console.error("Error creating chat: ", error);
@@ -110,7 +110,7 @@ export default function FriendsScreen({ navigation }) {
               ? [styles.buttonContainer, styles.disabledButton]
               : [styles.buttonContainer, styles.button]
           }
-          onPress={onPressCreateChat}
+          onPress={onPressCreateChat} //onPress calledd !
           disabled={chatName.length < 1 || selectedUsers.length < 1}
         >
           <Text style={styles.buttonText}>Create Chat</Text>
