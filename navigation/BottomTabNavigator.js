@@ -12,6 +12,9 @@ import HomeScreen from "../screens/HomeScreen";
 import StoriesScreen from "../screens/StoriesScreen";
 import SpotlightScreen from "../screens/SpotlightScreen";
 import MapScreen from "../screens/MapScreen";
+import RequestFormScreen from '../screens/RequestFormScren';
+import EditCategoryScreen from '../screens/EditCategoryScreen'
+
 
 import Colors from "../constants/Colors";
 
@@ -101,7 +104,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Spotlight"
-        component={SpotlightScreen}
+        component={EditCategoryScreen}
         options={{
           title: "Spotlight",
           tabBarIcon: ({ focused }) => (

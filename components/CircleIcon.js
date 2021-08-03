@@ -1,16 +1,17 @@
 import * as React from "react";
-import { View,Text,ScrollView,StyleSheet } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { View,Text,ScrollView,StyleSheet,Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+
 
 function CircleIcon(props){
     return (
         <View style={{display:'flex', alignItems:'center'}}>
             <TouchableOpacity style={styles.button} >
-                <Ionicons name={props.name}
-                size={30}></Ionicons>
+                <Image source={props.icon}
+                  style={{width: 40, height: 40}}
+                  resizeMode="contain"></Image>
             </TouchableOpacity>
-            <Text>{props.text}</Text>
+            <Text style={{fontWeight:'bold'}}>{props.text}</Text>
         </View>
     )
 }
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
         height: 50,
         width: 50,
         borderRadius: 25,
-        backgroundColor: 'gray',
+        backgroundColor: 'white',
         marginBottom: 10,
         display:'flex',
         justifyContent: 'center',
