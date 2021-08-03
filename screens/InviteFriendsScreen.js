@@ -48,30 +48,30 @@ export default function InviteFriendsScreen({navigation}) {
         .get()
         .then((doc) => {
           if (doc.exists) {
-            const onSend = useCallback(
-                async (messages = []) => {
-                  if (messages.length < 1) return;
+            // const onSend = useCallback(
+            //     async (messages = []) => {
+            //       if (messages.length < 1) return;
             
-                  if (imageURI !== null) {
-                    let downloadURL = await uploadImage();
-                    if (downloadURL) {
-                      messages[0].image = downloadURL;
-                    }
-                  }
+            //       if (imageURI !== null) {
+            //         let downloadURL = await uploadImage();
+            //         if (downloadURL) {
+            //           messages[0].image = downloadURL;
+            //         }
+            //       }
             
-                  db.collection("Chats")
-                    .doc(chatName)
-                    .update({
-                      // arrayUnion appends the message to the existing array
-                      messages: firebase.firestore.FieldValue.arrayUnion(messages[0]),
-                      lastUpdated: Date.now(),
-                    });
-                  setMessages((previousMessages) =>
-                    GiftedChat.append(previousMessages, messages)
-                  );
-                },
-                [imageURI]
-            );
+            //       db.collection("Chats")
+            //         .doc(chatName)
+            //         .update({
+            //           // arrayUnion appends the message to the existing array
+            //           messages: firebase.firestore.FieldValue.arrayUnion(messages[0]),
+            //           lastUpdated: Date.now(),
+            //         });
+            //       setMessages((previousMessages) =>
+            //         GiftedChat.append(previousMessages, messages)
+            //       );
+            //     },
+            //     [imageURI]
+            // );
 
             alert("Chat with this name already exists!");
           } else {
