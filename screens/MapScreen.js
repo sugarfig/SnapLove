@@ -158,6 +158,7 @@ export default function MapScreen({navigation}) {
           buisnessWebsite = {"mirrormemoirs.org"}
           buisnessDetails = {"This workshop incorporates various practitioners, scholars, and organizers from different backgrounds who have dedicated to disability and transformative justice movements for many years."}
           topRightButton = {"Save"}
+          test={()=>{navigation.navigate("InviteFriends")}}
           // iconName = 'school-outline'
           />
 

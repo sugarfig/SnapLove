@@ -1,6 +1,6 @@
 
-
-import React, { useState, useEffect, useRef } from "react";
+import * as React from "react";
+import { useState, useEffect, useRef } from "react";
 import { View, Button, StyleSheet, Dimensions, Text, Modal, Image } from "react-native";
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Ionicons } from "@expo/vector-icons";
@@ -9,13 +9,13 @@ import CircleIcon from '../components/CircleIcon'
 import { TouchableOpacity } from "react-native-gesture-handler";
 // import { Ionicons } from "@expo/vector-icons";
  
-function InfoPage(props, {navigation}) {
+function InfoPage(props) {
   const refRBSheet = useRef();
 
-  const onPressInvite = () => {
-    //   console.log("WORKKKKKKKKK");
-    navigation.nagivate ("InviteFriends"); // MAKE SURE TO ADD NAVIAGTION AT TOP !!
-    };
+//   const onPressInvite = () => {
+//     //   console.log("WORKKKKKKKKK");
+//     navigation.nagivate ("InviteFriends"); // MAKE SURE TO ADD NAVIAGTION AT TOP !!
+//     };
 
   return (
     <View>
@@ -95,7 +95,7 @@ function InfoPage(props, {navigation}) {
                     </View>
 
                     <View style={{display:'flex', alignItems:'center'}}>
-                        <TouchableOpacity style={styles.button} onPress = {() => {console.log("welppp")}}>
+                        <TouchableOpacity style={styles.button} onPress = {props.test}>
                             
                             <Text>Invite Friends</Text>
                         </TouchableOpacity>
