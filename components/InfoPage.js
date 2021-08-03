@@ -9,8 +9,14 @@ import CircleIcon from '../components/CircleIcon'
 import { TouchableOpacity } from "react-native-gesture-handler";
 // import { Ionicons } from "@expo/vector-icons";
  
-function InfoPage(props) {
+function InfoPage(props, {navigation}) {
   const refRBSheet = useRef();
+
+  const onPressInvite = () => {
+    //   console.log("WORKKKKKKKKK");
+    navigation.nagivate ("InviteFriends"); // MAKE SURE TO ADD NAVIAGTION AT TOP !!
+    };
+
   return (
     <View>
         <View style={styles.resoursesContainer}>
@@ -81,9 +87,30 @@ function InfoPage(props) {
                 </View>
 
                 <View style = {styles.buttons}>
-                    <CircleIcon text = {props.button1}></CircleIcon>
-                    <CircleIcon text = {props.button2}></CircleIcon>
-                    <CircleIcon text= {props.button3}></CircleIcon>
+
+                    <View style={{display:'flex', alignItems:'center'}}>
+                        <TouchableOpacity style={styles.button}>
+                            <Text>...</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    <View style={{display:'flex', alignItems:'center'}}>
+                        <TouchableOpacity style={styles.button} onPress = {() => {console.log("welppp")}}>
+                            
+                            <Text>Invite Friends</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    <View style={{display:'flex', alignItems:'center'}}>
+                        <TouchableOpacity style={styles.button}>
+                            <Text>Going?</Text>
+                        </TouchableOpacity>
+                    </View>
+
+
+                    {/* <CircleIcon text = {"..."}></CircleIcon>
+                    <CircleIcon text = {"Invite Friends"}></CircleIcon>
+                    <CircleIcon text= {"Going?"} onPress = {onPressInvite}> </CircleIcon> */}
                 </View>
                 
                     
@@ -101,7 +128,16 @@ function InfoPage(props) {
 }
 
 const styles = StyleSheet.create({
-
+    button:{
+        height: 48,
+        width: 90,
+        borderRadius: 25,
+        backgroundColor: 'gray',
+        marginBottom: 10,
+        display:'flex',
+        justifyContent: 'center',
+        alignItems:'center',
+    },
     storiesImage: {
         width: 118.57,
         height: 120,

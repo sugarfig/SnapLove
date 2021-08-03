@@ -4,9 +4,13 @@ import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 function CircleIcon(props){
+    // const onPressButton = () => {
+        
+    // };
+
     return (
         <View style={{display:'flex', alignItems:'center'}}>
-            <TouchableOpacity style={styles.button} >
+            <TouchableOpacity style={styles.button} onPress = {props.onPress}>
                 <Text>{props.text}</Text>
                 {/* <Ionicons name={props.name}
                 size={30}></Ionicons> */}

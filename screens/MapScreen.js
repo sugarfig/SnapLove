@@ -22,7 +22,7 @@ const LOS_ANGELES_REGION = {
   longitudeDelta: 0.0421,
 };
 
-export default function MapScreen() {
+export default function MapScreen({navigation}) {
   const [snapLove, setSnapLove] = useState(false);
   const refRBSheet = useRef();
   const [currLocation, setCurrLocation] = useState(null);
@@ -57,7 +57,7 @@ export default function MapScreen() {
     setSnapLove(true);
     console.log(currLocation)
 
-  }
+  };
 
   return (
     <>
@@ -157,9 +157,6 @@ export default function MapScreen() {
           buisnessLocation = {"1235 Lanston Blvd, Los Angeles, CA 90321"} 
           buisnessWebsite = {"mirrormemoirs.org"}
           buisnessDetails = {"This workshop incorporates various practitioners, scholars, and organizers from different backgrounds who have dedicated to disability and transformative justice movements for many years."}
-          button1 = {"..."}
-          button2 = {"Invite friends"}
-          button3 = {"Going?s"}
           topRightButton = {"Save"}
           // iconName = 'school-outline'
           />
