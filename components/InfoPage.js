@@ -1,12 +1,12 @@
 
 import * as React from "react";
 import { useState, useEffect, useRef } from "react";
-import { View, Button, StyleSheet, Dimensions, Text, Modal, Image } from "react-native";
+import { View, Button, StyleSheet, Dimensions, Text, Modal, Image, TouchableOpacity } from "react-native";
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "../constants/Colors";
 import CircleIcon from '../components/CircleIcon'
-import { TouchableOpacity } from "react-native-gesture-handler";
+// import { TouchableOpacity } from "react-native-gesture-handler";
 // import { Ionicons } from "@expo/vector-icons";
  
 function InfoPage(props) {
