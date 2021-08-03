@@ -17,7 +17,10 @@ import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 
 
 const bitmoji = require("../assets/bitmoji.png");
-
+const jobs  = require("../assets/jobOutline.png");
+const counsling  = require("../assets/counslingOutline.png");
+const internship  = require("../assets/internshipsOutline.png");
+const workshop  = require("../assets/Workshop-1.5x.png");
 
 var width = Dimensions.get('window').width; //full width
 // var height = Dimensions.get('window').height; //full height
@@ -125,8 +128,8 @@ export default function MapScreen({ navigation, route }) {
               onPress={turnOnSnapLove}
             > 
               <View style={{display:'flex',justifyContent:'space-around'}}>
-                <View style={{backgroundColor:'rgba(0,0, 0, 0.41)',width: 130, height: 50, borderRadius: 550, right:150 }}>
-                  <Text style={{textAlign:'center', display:'flex', marginTop: 15,color:'white',fontWeight:'bold',fontSize:18}}>SnapLOVE</Text>
+                <View style={{backgroundColor:'white',width: 130, height: 50, borderRadius: 550, right:150 }}>
+                  <Text style={{textAlign:'center', display:'flex', marginTop: 15,color:'black',fontWeight:'bold',fontSize:18}}>SnapLOVE</Text>
                 </View>
                 <View style={styles.submitText}></View>
               </View>
@@ -169,13 +172,13 @@ export default function MapScreen({ navigation, route }) {
             }}
           >
                 <View  style={{flex: 1}}>
-                  <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-                    <Text style={{marginBottom: 20, marginLeft: 10, fontSize: 25, fontWeight: 'bold'}}>Find Resources</Text>
+                  <ScrollView contentContainerStyle={{ flexGrow: 1 }} style={{backgroundColor:'#F8F8F8'}}>
+                    <Text style={{marginTop:20, marginBottom: 20, marginLeft: 10, fontSize: 25, fontWeight: 'bold'}}>Find Resources</Text>
                     <View style={{display:'flex', flexDirection:'row', justifyContent:'space-around', marginBottom: 30}}>
-                      <CircleIcon  text='scholarships'></CircleIcon>
-                      <CircleIcon  text='workshops'></CircleIcon>
-                      <CircleIcon  text='search'></CircleIcon>
-                      <CircleIcon  text='jobs'></CircleIcon>
+                      <CircleIcon icon={counsling} text='Counselings'></CircleIcon>
+                      <CircleIcon icon={workshop} text='Workshops'></CircleIcon>
+                      <CircleIcon icon={internship} text='Internships'></CircleIcon>
+                      <CircleIcon icon={jobs} text='Jobs'></CircleIcon>
                     </View>
                     <View style={{display:'flex', alignItems:'center'}}>
                       <Card title="Mirror Memiors" description="Description"></Card>
@@ -229,6 +232,7 @@ const styles = StyleSheet.create({
     top: 15,
     display: 'flex',
     alignSelf:'center',
+    color:'white'
   },
   snapLoveButton:{
     height: 50,
