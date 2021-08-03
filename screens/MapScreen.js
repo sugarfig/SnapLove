@@ -63,9 +63,8 @@ export default function MapScreen({ navigation, route }) {
   const turnOnSnapLove = () =>{
     setSnapLove(true);
   }
-  function getRoute(route){
-    const routeName = getFocusedRouteNameFromRoute(route) ?? null;
-    console.log(routeName)
+  function changeToRequestForm(){
+    navigation.navigate("RequestForm");
   }
 
   return (
@@ -116,7 +115,7 @@ export default function MapScreen({ navigation, route }) {
         <View style={styles.submitButtomContainer}>
           <TouchableOpacity
             style={styles.submitButton}
-            onPress={getRoute}
+            onPress={changeToRequestForm}
           >
             <Text style={styles.submitText}>suggest</Text>
           </TouchableOpacity>
@@ -169,8 +168,6 @@ export default function MapScreen({ navigation, route }) {
               }
             }}
           >
-            
-              
                 <View  style={{flex: 1}}>
                   <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                     <Text style={{marginBottom: 20, marginLeft: 10, fontSize: 25, fontWeight: 'bold'}}>Find Resources</Text>
@@ -187,9 +184,6 @@ export default function MapScreen({ navigation, route }) {
                     </View>
                   </ScrollView>
                 </View>
-             
-            
-            
           </RBSheet>
         </View>
       ) : null}

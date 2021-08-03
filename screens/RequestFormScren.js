@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Colors from "../constants/Colors";
 import {
-  ImageBackground,
   StyleSheet,
-  ScrollView,
   Text,
   View,
-  StatusBar,
 } from "react-native";
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
@@ -14,8 +10,12 @@ import { Dimensions } from "react-native";
 
 
 var width = Dimensions.get('window').width; //full width
-export default function RequestFormScreen() {
+export default function RequestFormScreen({navigation}) {
 const [name, onChangeName] = useState(null);
+
+function changeToEditCategory(){
+  navigation.navigate("EditCategory")
+}
   return (
     <View style={styles.container}>
         <Text style={{textAlign: 'center', marginTop: 20, fontSize:18, fontWeight:'bold'}}>Suggest a Place</Text>
@@ -30,7 +30,7 @@ const [name, onChangeName] = useState(null);
         </View>
         <View >
             <Text>Catergory</Text>
-            <TouchableOpacity style={styles.categoryButton}>
+            <TouchableOpacity style={styles.categoryButton} onPress={changeToEditCategory}>
                 <Text>Tap to add a Catergory</Text>
                 <Ionicons
                   name={"chevron-forward-outline"}

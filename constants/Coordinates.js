@@ -1,6 +1,6 @@
-const counseling = require("../assets/counseling-1.5x.png");
-const internships = require("../assets/internships-1.5x.png");
-const jobs = require("../assets/jobs-1.5x.png");
+const counseling = require("../assets/counslingOutline.png");
+const internships = require("../assets/internshipsOutline.png");
+const jobs = require("../assets/jobOutline.png");
 const workshops = require("../assets/Workshop-1.5x.png");
 
 const coordinates = [
