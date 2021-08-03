@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Colors from "../constants/Colors";
-import { StyleSheet, View, Text, Image, Modal } from "react-native";
+import { StyleSheet, View, Text, Image, ScrollView} from "react-native";
 import * as Location from "expo-location";
 import MapView, { Marker } from "react-native-maps";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -8,11 +8,24 @@ import { Ionicons } from "@expo/vector-icons";
 import colors from "../constants/Colors";
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Dimensions } from "react-native";
-import CircleIcon from '../components/CircleIcon';
+
+import CircleIcon from '../components/CircleIcon'
+import coordinates from '../constants/Coordinates'
+import Pin from '../components/Pin'
+import Card from '../components/Card'
+import DropDownPicker from 'react-native-dropdown-picker';
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+
 import InfoPage from "../components/InfoPage";
 
 
+
 const bitmoji = require("../assets/bitmoji.png");
+const jobs  = require("../assets/jobOutline.png");
+const counsling  = require("../assets/counslingOutline.png");
+const internship  = require("../assets/internshipsOutline.png");
+const workshop  = require("../assets/Workshop-1.5x.png");
+
 var width = Dimensions.get('window').width; //full width
 // var height = Dimensions.get('window').height; //full height
 const LOS_ANGELES_REGION = {
@@ -22,11 +35,14 @@ const LOS_ANGELES_REGION = {
   longitudeDelta: 0.0421,
 };
 
-export default function MapScreen({navigation}) {
+
+export default function MapScreen({ navigation, route }) {
+
   const [snapLove, setSnapLove] = useState(false);
   const refRBSheet = useRef();
   const [currLocation, setCurrLocation] = useState(null);
   const mapView = useRef(null);
+  
 
   useEffect(() => {
     (async () => {
@@ -55,9 +71,12 @@ export default function MapScreen({navigation}) {
 
   const turnOnSnapLove = () =>{
     setSnapLove(true);
-    console.log(currLocation)
 
-  };
+  }
+  function changeToRequestForm(){
+    navigation.navigate("RequestForm");
+  }
+
 
   return (
     <>
@@ -67,14 +86,25 @@ export default function MapScreen({navigation}) {
         initialRegion={LOS_ANGELES_REGION}
       >
         {currLocation ? (
-          <Marker
-            coordinate={currLocation}
-            title={"Current Location"}
-            description={"You are here!"}
-          ><Image source={bitmoji}
-            style={{width: 125, height: 125}}
-            resizeMode="contain"></Image>
-          </Marker>
+          <View>
+            <Marker
+              coordinate={currLocation}
+              title={"Current Location"}
+              description={"You are here!"}
+            ><Image source={bitmoji}
+              style={{width: 125, height: 125}}
+              resizeMode="contain"></Image>
+            </Marker>
+          </View>
+          
+         
+        ) : null}
+        {(currLocation && snapLove) ? (
+          <View>
+            {coordinates.map(coor => {
+              return <Pin key={coor.key} location={coor.coordinate} icon={coor.icon}></Pin>
+            })}
+          </View>
         ) : null}
 
       </MapView>
@@ -97,15 +127,30 @@ export default function MapScreen({navigation}) {
         <View style={styles.submitButtomContainer}>
           <TouchableOpacity
             style={styles.submitButton}
+            onPress={changeToRequestForm}
           >
             <Text style={styles.submitText}>suggest</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.submitButton}
-            onPress={turnOnSnapLove}
+          <View style={styles.dropDownContainer}>
+            <TouchableOpacity
+              style={styles.snapLoveButton}
+              onPress={turnOnSnapLove}
+            > 
+              <View style={{display:'flex',justifyContent:'space-around'}}>
+                <View style={{backgroundColor:'white',width: 130, height: 50, borderRadius: 550, right:150 }}>
+                  <Text style={{textAlign:'center', display:'flex', marginTop: 15,color:'black',fontWeight:'bold',fontSize:18}}>SnapLOVE</Text>
+                </View>
+                <View style={styles.submitText}></View>
+              </View>
+        
+            </TouchableOpacity>
+            <TouchableOpacity
+            style={styles.snapLoveButton}
           >
-            <Text style={styles.submitText}>Snap Love</Text>
+            <Ionicons style={{top:8,display: 'flex', alignSelf:'center',}} size={30} name="chevron-up-outline" color='white'></Ionicons>
           </TouchableOpacity>
+          </View>
+         
         </View>
       ) : null}
 
@@ -115,7 +160,7 @@ export default function MapScreen({navigation}) {
             <Ionicons
                   name={"menu-outline"}
                   size={40}
-                  color={Colors.snapblue}
+                  color={'black'}
                   style={{ marginTop: 5, marginLeft: 3 }}
                   onPress={() => refRBSheet.current.open()}
             />
@@ -125,7 +170,8 @@ export default function MapScreen({navigation}) {
             height={400}
             ref={refRBSheet}
             closeOnDragDown={true}
-            closeOnPressMask={false}
+            closeOnPressMask={true}
+    
             customStyles={{
               wrapper: {
                 backgroundColor: "transparent"
@@ -135,16 +181,22 @@ export default function MapScreen({navigation}) {
               }
             }}
           >
-            <View>
-              <Text style={{marginBottom: 20, marginLeft: 10, fontSize: 25}}>Find Resources</Text>
-              <View style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
-                <CircleIcon name='school-outline' text='scholarships'></CircleIcon>
-                <CircleIcon name='home-outline' text='workshops'></CircleIcon>
-                <CircleIcon name='search-outline' text='search'></CircleIcon>
-              </View>
-              
-            </View>
-            
+                <View  style={{flex: 1}}>
+                  <ScrollView contentContainerStyle={{ flexGrow: 1 }} style={{backgroundColor:'#F8F8F8'}}>
+                    <Text style={{marginTop:20, marginBottom: 20, marginLeft: 10, fontSize: 25, fontWeight: 'bold'}}>Find Resources</Text>
+                    <View style={{display:'flex', flexDirection:'row', justifyContent:'space-around', marginBottom: 30}}>
+                      <CircleIcon icon={counsling} text='Counselings'></CircleIcon>
+                      <CircleIcon icon={workshop} text='Workshops'></CircleIcon>
+                      <CircleIcon icon={internship} text='Internships'></CircleIcon>
+                      <CircleIcon icon={jobs} text='Jobs'></CircleIcon>
+                    </View>
+                    <View style={{display:'flex', alignItems:'center'}}>
+                      <Card title="Mirror Memiors" description="Description"></Card>
+                      <Card title="It Gets Better" description="Description"></Card>
+                      <Card title="Acess Points" description="Description"></Card>
+                    </View>
+                  </ScrollView>
+                </View>
           </RBSheet>
         </View>
       ) : null}
@@ -189,7 +241,7 @@ const styles = StyleSheet.create({
   submitButtomContainer: {
     position: "absolute",
     top: 20,
-    right: 20,
+    right: 10,
     display: 'flex',
     alignSelf: 'flex-end',
     
@@ -200,13 +252,22 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     backgroundColor: 'gray',
     marginBottom: 10,
+    marginLeft: 5,
   },
   submitText: {
     fontSize: 13,
     top: 15,
     display: 'flex',
     alignSelf:'center',
-    
+    color:'white'
+  },
+  snapLoveButton:{
+    height: 50,
+    width: 50,
+    borderRadius: 25,
+    backgroundColor: '#C4C4C4',
+    margin: 5,
+    top: 3,
   },
   resourcesContainer: {
     width: width,
@@ -214,6 +275,11 @@ const styles = StyleSheet.create({
     display:'flex',
     alignItems: 'center',
     top: 676,
-    
+  },
+  dropDownContainer: {
+    height: 130,
+    width: 60,
+    backgroundColor: 'rgba(0,0, 0, 0.41)',
+    borderRadius: 50
   }
 });
