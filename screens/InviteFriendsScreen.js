@@ -18,7 +18,27 @@ export default function InviteFriendsScreen({navigation}) {
     // const [chatName, setChatName] = useState("Invitation");
     const [userList, setUserList] = useState({});
     const [selectedUsers, setSelectedUsers] = useState([]);
-  
+    const [currUser, setCurrUser] = useState(null);
+    const [imageURI, setImageURI] = useState(null);
+    const [displayName, setDisplayName] = useState("");
+    useEffect(() => {
+        // Download curr user info
+        // (and listen for future updates)
+        // (in case curr user decides to update their profile info)
+        return db
+          .collection("Users")
+          .doc(firebase.auth().currentUser.uid)
+          .onSnapshot((userSnapshot) => {
+            setCurrUser({ uid: userSnapshot.id, ...userSnapshot.data() });
+          });
+      }, []);
+    
+    useEffect(() => {
+        if (!currUser) return;
+        setImageURI(currUser.photoURL);
+        setDisplayName(currUser.displayName);
+        }, [currUser]);
+
     useEffect(() => {
       // Download all users info from Firebase "Users" collection
       // (and listen for future updates)
@@ -56,9 +76,9 @@ export default function InviteFriendsScreen({navigation}) {
                     text: 'You have been invited!',
                     createdAt: new Date(),
                     user: {
-                      _id: firebase.auth().currentUser.uid,
-                      name: firebase.auth().currentUser.displayName,
-                      avatar: "https://placeimg.com/140/140/any", //DOES NOT WORK WITH GETTING UPLOADED USER
+                      _id: currUser.uid,
+                      name: currUser.displayName,
+                      avatar: currUser.photoURL ? currUser.photoURL : null, //DOES NOT WORK WITH GETTING UPLOADED USER
                     },
                   }],
                 users: [...selectedUsers, firebase.auth().currentUser.uid],

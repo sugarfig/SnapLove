@@ -23,6 +23,7 @@ export default function ChatScreen({ route }) {
           return singleMessage;
         });
         setMessages(newMessages);
+        console.log(newMessages);
       });
 
     return function cleanupBeforeUnmounting() {
