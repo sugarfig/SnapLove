@@ -56,9 +56,9 @@ export default function InviteFriendsScreen({navigation}) {
                     text: 'You have been invited!',
                     createdAt: new Date(),
                     user: {
-                      _id: 2,
-                      name: 'React Native',
-                      avatar: 'https://placeimg.com/140/140/any',
+                      _id: firebase.auth().currentUser.uid,
+                      name: firebase.auth().currentUser.displayName,
+                      avatar: firebase.auth().currentUser.photoURL ? firebase.auth().currentUser.photoURL : null,
                     },
                   }],
                 users: [...selectedUsers, firebase.auth().currentUser.uid],
