@@ -210,32 +210,17 @@ export default function MapScreen({ navigation, route }) {
             buisnessWebsite = {"mirrormemoirs.org"}
             buisnessDetails = {"This workshop incorporates various practitioners, scholars, and organizers from different backgrounds who have dedicated to disability and transformative justice movements for many years."}
             topRightButton = {"Save"}
-            test={()=>{navigation.navigate("InviteFriends")}}
+            test={()=>{
+            refRBSheet.current.close();
+            navigation.navigate("InviteFriends");
+           
+          }}
             // iconName = 'school-outline'
             />)}
                
           </RBSheet>
         </View>
       ) : null}
-
-      {currLocation ? (
-        <View>
-          
-          {/* <InfoPage 
-          buisnessName = {"Please work"} 
-          buisnessType = {"Workshop"} 
-          buisnessLocation = {"1235 Lanston Blvd, Los Angeles, CA 90321"} 
-          buisnessWebsite = {"mirrormemoirs.org"}
-          buisnessDetails = {"This workshop incorporates various practitioners, scholars, and organizers from different backgrounds who have dedicated to disability and transformative justice movements for many years."}
-          topRightButton = {"Save"}
-          test={()=>{navigation.navigate("InviteFriends")}}
-          // iconName = 'school-outline'
-          /> */}
-
-        </View>
-
-      ):null}
-
 
     </>
   );
