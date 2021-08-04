@@ -1,7 +1,7 @@
 
 import * as React from "react";
 import { useState, useEffect, useRef } from "react";
-import {View, Button, StyleSheet, Dimensions, Text, Modal, Image, TouchableOpacity } from "react-native";
+import {Pressable,View, Button, StyleSheet, Dimensions, Text, Modal, Image, TouchableOpacity } from "react-native";
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "../constants/Colors";
@@ -12,10 +12,54 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 var width = Dimensions.get('window').width;
 function InfoPage(props) {
+  const [modalVisible, setModalVisible] = useState(false);
+
   const refRBSheet = useRef();
 
   return (
     <View>
+        <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+            <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+                <TouchableOpacity style={styles.goingChoice}>
+                    <Ionicons
+                    name={"happy-outline"}
+                    size={30}
+                    color={'gray'}
+                    style={{marginRight:10}}
+                    
+                    />
+                    <Text>Yes, I'm there!</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.goingChoice}>
+                    <Ionicons
+                    name={"bookmark-outline"}
+                    size={30}
+                    color={'gray'}
+                    style={{marginRight:10}}
+                    
+                    />
+                    <Text>Save for later</Text>
+                </TouchableOpacity>
+
+                <Text style={styles.modalText}></Text>
+                <Pressable
+                style={[styles.buttonModal, styles.buttonClose]}
+                onPress={() => setModalVisible(!modalVisible)}
+                >
+                <Text style={styles.textStyle}>Done</Text>
+                </Pressable>
+            </View>
+            </View>
+        </Modal>
         <View style = {styles.buisnessContainer} >
             {/* image */}
             <View>
@@ -58,7 +102,7 @@ function InfoPage(props) {
                 </TouchableOpacity>
             </View>
             <View style={{display:'flex', alignItems:'center'}}>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.button}>
                     <Text>Going?</Text>
                 </TouchableOpacity>
             </View>
@@ -82,6 +126,22 @@ function InfoPage(props) {
 }
 
 const styles = StyleSheet.create({
+    goingChoice:{
+        display:'flex', 
+        flexDirection:'row', 
+        alignItems:'center',
+        height: 50,
+        width:300,
+        marginBottom:10,
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        
+    },
     button:{
         height: 48,
         width: 120,
@@ -99,6 +159,39 @@ const styles = StyleSheet.create({
         top: 3,
         borderRadius: 80,
     },
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22
+      },
+      modalView: {
+        margin: 20,
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+      },
+      buttonModal: {
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2
+      },
+      buttonClose: {
+        backgroundColor: "gray",
+      },
+      modalText: {
+        marginBottom: 15,
+        textAlign: "center"
+      },
 
     // storiesButton: {
     //     // position: "absolute",

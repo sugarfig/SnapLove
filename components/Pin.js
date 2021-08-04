@@ -11,8 +11,6 @@ function Pin(props){
     return(
         <Marker
         coordinate={props.location}
-        title={"Current Location"}
-        description={"You are here!"}
         onPress={() => {
           props.refRBSheet.current.open();
           props.setCurrOrg(props.title);

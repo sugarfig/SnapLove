@@ -24,7 +24,8 @@ const bitmoji = require("../assets/bitmoji.png");
 const jobs  = require("../assets/jobOutline.png");
 const counsling  = require("../assets/counslingOutline.png");
 const internship  = require("../assets/internshipsOutline.png");
-const workshop  = require("../assets/Workshop-1.5x.png");
+const workshop  = require("../assets/workshopsOutline.png");
+const logo = require("../assets/SnapLoveLogo.png")
 
 var width = Dimensions.get('window').width; //full width
 // var height = Dimensions.get('window').height; //full height
@@ -141,16 +142,18 @@ export default function MapScreen({ navigation, route }) {
               style={styles.snapLoveButton}
               onPress={turnOnSnapLove}
             > 
+           
               <View style={{display:'flex',justifyContent:'space-around'}}>
                 <View style={{backgroundColor:'white',width: 130, height: 50, borderRadius: 550, right:150 }}>
                   <Text style={{textAlign:'center', display:'flex', marginTop: 15,color:'black',fontWeight:'bold',fontSize:18}}>SnapLOVE</Text>
                 </View>
-                <View style={styles.submitText}></View>
+              <View style={styles.submitText}></View>
+                
               </View>
         
             </TouchableOpacity>
             <TouchableOpacity
-            style={styles.snapLoveButton}
+            style={styles.snapLoveButton2}
           >
             <Ionicons style={{top:8,display: 'flex', alignSelf:'center',}} size={30} name="chevron-up-outline" color='white'></Ionicons>
           </TouchableOpacity>
@@ -204,7 +207,7 @@ export default function MapScreen({ navigation, route }) {
               </ScrollView>
             </View>) : 
             (<InfoPage 
-            buisnessName = {"Please work"} 
+            buisnessName = {"Mirror Memiors"} 
             buisnessType = {"Workshop"} 
             buisnessLocation = {"1235 Lanston Blvd, Los Angeles, CA 90321"} 
             buisnessWebsite = {"mirrormemoirs.org"}
@@ -265,6 +268,14 @@ const styles = StyleSheet.create({
     color:'white'
   },
   snapLoveButton:{
+    height: 50,
+    width: 50,
+    borderRadius: 25,
+    backgroundColor: '#DEAAFF',
+    margin: 5,
+    top: 3,
+  },
+  snapLoveButton2:{
     height: 50,
     width: 50,
     borderRadius: 25,

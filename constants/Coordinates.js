@@ -1,7 +1,7 @@
 const counseling = require("../assets/counslingOutline.png");
 const internships = require("../assets/internshipsOutline.png");
 const jobs = require("../assets/jobOutline.png");
-const workshops = require("../assets/Workshop-1.5x.png");
+const workshops = require("../assets/workshopsOutline.png");
 
 const coordinates = [
     {key:"counseling",
