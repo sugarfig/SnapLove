@@ -97,7 +97,7 @@ function InfoPage(props) {
         <View style = {styles.buttons}>
         
             <View style={{display:'flex', alignItems:'center'}}>
-                <TouchableOpacity style={styles.button} onPress = {props.test}>
+                <TouchableOpacity style={styles.button} onPress = {props.onPress}>
                     <Text>Invite Friends</Text>
                 </TouchableOpacity>
             </View>

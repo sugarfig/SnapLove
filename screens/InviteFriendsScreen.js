@@ -14,7 +14,8 @@ import {
   import firebase from "@firebase/app";
 
 export default function InviteFriendsScreen({navigation}) {
-    const [chatName, setChatName] = useState("");
+    const chatName = "Invitation";
+    // const [chatName, setChatName] = useState("Invitation");
     const [userList, setUserList] = useState({});
     const [selectedUsers, setSelectedUsers] = useState([]);
   
@@ -47,51 +48,31 @@ export default function InviteFriendsScreen({navigation}) {
         .doc(chatName)
         .get()
         .then((doc) => {
-          if (doc.exists) {
-            // const onSend = useCallback(
-            //     async (messages = []) => {
-            //       if (messages.length < 1) return;
-            
-            //       if (imageURI !== null) {
-            //         let downloadURL = await uploadImage();
-            //         if (downloadURL) {
-            //           messages[0].image = downloadURL;
-            //         }
-            //       }
-            
-            //       db.collection("Chats")
-            //         .doc(chatName)
-            //         .update({
-            //           // arrayUnion appends the message to the existing array
-            //           messages: firebase.firestore.FieldValue.arrayUnion(messages[0]),
-            //           lastUpdated: Date.now(),
-            //         });
-            //       setMessages((previousMessages) =>
-            //         GiftedChat.append(previousMessages, messages)
-            //       );
-            //     },
-            //     [imageURI]
-            // );
-
-            alert("Chat with this name already exists!");
-          } else {
             chatsRef
               .doc(chatName)
               .set({
-                messages: [],
+                messages: [{
+                    _id: 1,
+                    text: 'You have been invited!',
+                    createdAt: new Date(),
+                    user: {
+                      _id: firebase.auth().currentUser.uid,
+                      name: firebase.auth().currentUser.displayName,
+                      avatar: "https://placeimg.com/140/140/any", //DOES NOT WORK WITH GETTING UPLOADED USER
+                    },
+                  }],
                 users: [...selectedUsers, firebase.auth().currentUser.uid],
                 lastUpdated: Date.now(),
               })
               .then(() => {
                 console.log("Chat successfully created!");
                 setSelectedUsers([]);
-                setChatName("");
                 navigation.navigate("Chats"); //changes screen to chat screen.
               })
               .catch((error) => {
                 console.error("Error creating chat: ", error);
               });
-          }
+
         });
     };
   
@@ -121,14 +102,6 @@ export default function InviteFriendsScreen({navigation}) {
           />
         </View>
         <KeyboardAvoidingView behavior="position">
-          <View style={styles.inputContainer}>
-            <TextInput
-              style={styles.inputs}
-              placeholder="New Chat Name"
-              keyboardType="email-address"
-              onChangeText={setChatName}
-            />
-          </View>
           <TouchableOpacity
             style={
               chatName.length < 1 || selectedUsers.length < 1
@@ -138,7 +111,7 @@ export default function InviteFriendsScreen({navigation}) {
             onPress={onPressCreateChat} //onPress calledd !
             disabled={chatName.length < 1 || selectedUsers.length < 1}
           >
-            <Text style={styles.buttonText}>Create Chat</Text>
+            <Text style={styles.buttonText}>Invite friends!</Text>
           </TouchableOpacity>
         </KeyboardAvoidingView>
       </View>

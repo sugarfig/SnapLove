@@ -45,6 +45,7 @@ export default function MapScreen({ navigation, route }) {
   const mapView = useRef(null);
   const [currOrg,setCurrOrg]=useState('');
   
+  const [currOrgData,setCurrOrgData] = useState(null)
 
   useEffect(() => {
     (async () => {
@@ -79,11 +80,8 @@ export default function MapScreen({ navigation, route }) {
     navigation.navigate("RequestForm");
   }
 
-  function returnIconName(){
-    console.log("press")
-  }
 
-  console.log(currOrg)
+  console.log(currOrgData)
   return (
     <>
       <MapView
@@ -108,7 +106,7 @@ export default function MapScreen({ navigation, route }) {
         {(currLocation && snapLove) ? (
           <View>
             {coordinates.map(coor => {
-              return <Pin key={coor.key} title={coor.key} refRBSheet={refRBSheet} setCurrOrg={setCurrOrg} location={coor.coordinate}  icon={coor.icon}></Pin>
+              return <Pin key={coor.key} title={coor.key} setCurrOrgData={setCurrOrgData} index={coor.index} refRBSheet={refRBSheet} setCurrOrg={setCurrOrg} location={coor.coordinate}  icon={coor.icon}></Pin>
             })}
           </View>
         ) : null}
@@ -207,13 +205,13 @@ export default function MapScreen({ navigation, route }) {
               </ScrollView>
             </View>) : 
             (<InfoPage 
-            buisnessName = {"Mirror Memiors"} 
-            buisnessType = {"Workshop"} 
-            buisnessLocation = {"1235 Lanston Blvd, Los Angeles, CA 90321"} 
-            buisnessWebsite = {"mirrormemoirs.org"}
-            buisnessDetails = {"This workshop incorporates various practitioners, scholars, and organizers from different backgrounds who have dedicated to disability and transformative justice movements for many years."}
+            buisnessName = {coordinates[currOrgData].buisnessName} 
+            buisnessType = {coordinates[currOrgData].buisnessType} 
+            buisnessLocation = {coordinates[currOrgData].buisnessLocation} 
+            buisnessWebsite = {coordinates[currOrgData].buisnessWebsite}
+            buisnessDetails = {coordinates[currOrgData].buisnessDetails}
             topRightButton = {"Save"}
-            test={()=>{
+            onPress={()=>{
             refRBSheet.current.close();
             navigation.navigate("InviteFriends");
            

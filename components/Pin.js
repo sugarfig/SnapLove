@@ -14,6 +14,7 @@ function Pin(props){
         onPress={() => {
           props.refRBSheet.current.open();
           props.setCurrOrg(props.title);
+          props.setCurrOrgData(props.index)
         }}
       >
            <LinearGradient
