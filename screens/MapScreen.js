@@ -42,6 +42,7 @@ export default function MapScreen({ navigation, route }) {
   const refRBSheet = useRef();
   const [currLocation, setCurrLocation] = useState(null);
   const mapView = useRef(null);
+  const [currOrg,setCurrOrg]=useState('');
   
 
   useEffect(() => {
@@ -77,7 +78,11 @@ export default function MapScreen({ navigation, route }) {
     navigation.navigate("RequestForm");
   }
 
+  function returnIconName(){
+    console.log("press")
+  }
 
+  console.log(currOrg)
   return (
     <>
       <MapView
@@ -102,7 +107,7 @@ export default function MapScreen({ navigation, route }) {
         {(currLocation && snapLove) ? (
           <View>
             {coordinates.map(coor => {
-              return <Pin key={coor.key} location={coor.coordinate} icon={coor.icon}></Pin>
+              return <Pin key={coor.key} title={coor.key} refRBSheet={refRBSheet} setCurrOrg={setCurrOrg} location={coor.coordinate}  icon={coor.icon}></Pin>
             })}
           </View>
         ) : null}
@@ -181,29 +186,42 @@ export default function MapScreen({ navigation, route }) {
               }
             }}
           >
-                <View  style={{flex: 1}}>
-                  <ScrollView contentContainerStyle={{ flexGrow: 1 }} style={{backgroundColor:'#F8F8F8'}}>
-                    <Text style={{marginTop:20, marginBottom: 20, marginLeft: 10, fontSize: 25, fontWeight: 'bold'}}>Find Resources</Text>
-                    <View style={{display:'flex', flexDirection:'row', justifyContent:'space-around', marginBottom: 30}}>
-                      <CircleIcon icon={counsling} text='Counselings'></CircleIcon>
-                      <CircleIcon icon={workshop} text='Workshops'></CircleIcon>
-                      <CircleIcon icon={internship} text='Internships'></CircleIcon>
-                      <CircleIcon icon={jobs} text='Jobs'></CircleIcon>
-                    </View>
-                    <View style={{display:'flex', alignItems:'center'}}>
-                      <Card title="Mirror Memiors" description="Description"></Card>
-                      <Card title="It Gets Better" description="Description"></Card>
-                      <Card title="Acess Points" description="Description"></Card>
-                    </View>
-                  </ScrollView>
+            {currOrg === "" ?
+            ( <View  style={{flex: 1}}>
+              <ScrollView contentContainerStyle={{ flexGrow: 1 }} style={{backgroundColor:'#F8F8F8'}}>
+                <Text style={{marginTop:20, marginBottom: 20, marginLeft: 10, fontSize: 25, fontWeight: 'bold'}}>Find Resources</Text>
+                <View style={{display:'flex', flexDirection:'row', justifyContent:'space-around', marginBottom: 30}}>
+                  <CircleIcon icon={counsling} text='Counselings'></CircleIcon>
+                  <CircleIcon icon={workshop} text='Workshops'></CircleIcon>
+                  <CircleIcon icon={internship} text='Internships'></CircleIcon>
+                  <CircleIcon icon={jobs} text='Jobs'></CircleIcon>
                 </View>
+                <View style={{display:'flex', alignItems:'center'}}>
+                  <Card title="Mirror Memiors" description="Description"></Card>
+                  <Card title="It Gets Better" description="Description"></Card>
+                  <Card title="Acess Points" description="Description"></Card>
+                </View>
+              </ScrollView>
+            </View>) : 
+            (<InfoPage 
+            buisnessName = {"Please work"} 
+            buisnessType = {"Workshop"} 
+            buisnessLocation = {"1235 Lanston Blvd, Los Angeles, CA 90321"} 
+            buisnessWebsite = {"mirrormemoirs.org"}
+            buisnessDetails = {"This workshop incorporates various practitioners, scholars, and organizers from different backgrounds who have dedicated to disability and transformative justice movements for many years."}
+            topRightButton = {"Save"}
+            test={()=>{navigation.navigate("InviteFriends")}}
+            // iconName = 'school-outline'
+            />)}
+               
           </RBSheet>
         </View>
       ) : null}
 
       {currLocation ? (
         <View>
-          <InfoPage 
+          
+          {/* <InfoPage 
           buisnessName = {"Please work"} 
           buisnessType = {"Workshop"} 
           buisnessLocation = {"1235 Lanston Blvd, Los Angeles, CA 90321"} 
@@ -212,7 +230,7 @@ export default function MapScreen({ navigation, route }) {
           topRightButton = {"Save"}
           test={()=>{navigation.navigate("InviteFriends")}}
           // iconName = 'school-outline'
-          />
+          /> */}
 
         </View>
 

@@ -19,7 +19,7 @@ function InfoPage(props) {
 
   return (
     <View>
-        <View style={styles.resoursesContainer}>
+        {/* <View style={styles.resoursesContainer}>
             <Ionicons
             name={"menu-outline"}
             size={40}
@@ -27,8 +27,9 @@ function InfoPage(props) {
             style={{ marginTop: 5, marginLeft: 3 }}
             onPress={() => refRBSheet.current.open()}
             />
-        </View>
-        <RBSheet
+        </View> */}
+    
+        {/* <RBSheet
             height={400}
             ref={refRBSheet}
             closeOnDragDown={true}
@@ -41,7 +42,7 @@ function InfoPage(props) {
                 backgroundColor: "#000"
             }
             }}
-        >
+        > */}
             <View >
                 <View style = {styles.buisnessContainer}>
 
@@ -122,7 +123,7 @@ function InfoPage(props) {
                     <CircleIcon name='search-outline' text='search'></CircleIcon>
                 </View> */}
             </View>
-        </RBSheet>
+        {/* </RBSheet> */}
     </View>
   );
 }
