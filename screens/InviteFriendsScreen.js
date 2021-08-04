@@ -58,7 +58,7 @@ export default function InviteFriendsScreen({navigation}) {
                     user: {
                       _id: firebase.auth().currentUser.uid,
                       name: firebase.auth().currentUser.displayName,
-                      avatar: firebase.auth().currentUser.photoURL ? firebase.auth().currentUser.photoURL : null,
+                      avatar: "https://placeimg.com/140/140/any", //DOES NOT WORK WITH GETTING UPLOADED USER
                     },
                   }],
                 users: [...selectedUsers, firebase.auth().currentUser.uid],
@@ -111,7 +111,7 @@ export default function InviteFriendsScreen({navigation}) {
             onPress={onPressCreateChat} //onPress calledd !
             disabled={chatName.length < 1 || selectedUsers.length < 1}
           >
-            <Text style={styles.buttonText}>Create Chat</Text>
+            <Text style={styles.buttonText}>Invite friends!</Text>
           </TouchableOpacity>
         </KeyboardAvoidingView>
       </View>
