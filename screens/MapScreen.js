@@ -213,8 +213,10 @@ export default function MapScreen({ navigation, route }) {
             topRightButton = {"Save"}
             onPress={()=>{
             refRBSheet.current.close();
-            navigation.navigate("InviteFriends");
-           
+            navigation.navigate("InviteFriends", {
+              index: currOrgData,
+            });
+            
           }}
             // iconName = 'school-outline'
             />)}

@@ -12,8 +12,9 @@ import {
   import Colors from "../constants/Colors";
   import db from "../firebase";
   import firebase from "@firebase/app";
+  import coordinates from "../constants/Coordinates"
 
-export default function InviteFriendsScreen({navigation}) {
+export default function InviteFriendsScreen({navigation, route}) {
     const chatName = "Invitation";
     // const [chatName, setChatName] = useState("Invitation");
     const [userList, setUserList] = useState({});
@@ -21,7 +22,8 @@ export default function InviteFriendsScreen({navigation}) {
     const [currUser, setCurrUser] = useState(null);
     const [imageURI, setImageURI] = useState(null);
     const [displayName, setDisplayName] = useState("");
-    
+    const { index } = route.params;
+
 
     useEffect(() => {
         // Download curr user info
@@ -75,7 +77,7 @@ export default function InviteFriendsScreen({navigation}) {
               .set({
                 messages: [{
                     _id: 1,
-                    text: 'You have been invited!',
+                    text: `${currUser.displayName} has invited you to the ${coordinates[index].buisnessName} ${coordinates[index].buisnessType} at ${coordinates[index].buisnessLocation}! For more info visit their website at ${coordinates[index].buisnessWebsite}.`,
                     createdAt: new Date(),
                     user: {
                       _id: currUser.uid,
