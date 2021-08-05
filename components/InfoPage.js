@@ -7,15 +7,25 @@ import { Ionicons } from "@expo/vector-icons";
 import Colors from "../constants/Colors";
 import CircleIcon from '../components/CircleIcon';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useFonts } from 'expo-font';
+// import Avenir from '../assets/fonts/Avenir';
 // import { TouchableOpacity } from "react-native-gesture-handler";
 // import { Ionicons } from "@expo/vector-icons";
 
 var width = Dimensions.get('window').width;
 function InfoPage(props) {
   const [modalVisible, setModalVisible] = useState(false);
+  const [loaded] = useFonts({
+    Avenir: require('../assets/fonts/avenir.ttf'),
+  });
 
   const refRBSheet = useRef();
 
+  if (!loaded) {
+    return null;
+  }
+
+  
   return (
     <View>
         <Modal
@@ -237,7 +247,7 @@ const styles = StyleSheet.create({
         left: 34,
         top: 210,
 
-        // fontFamily: "Avenir",
+        fontFamily: 'Avenir',
         fontStyle: "normal",
         fontWeight: "normal",
         fontSize: 12,

@@ -1139,6 +1139,11 @@
   dependencies:
     "@types/hammerjs" "^2.0.36"
 
+"@expo-google-fonts/courier-prime@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/courier-prime/-/courier-prime-0.2.0.tgz#2f6e032d26ca14dc7c6b7a243f0410abbbfc42a4"
+  integrity sha512-fokny6yz/ObK2pMuLl0Hz1vKGR5W/mQ+oy8s+99B8CnDNT9UBokA97mtETgtOySehDm/yYGJZZWjAOgmH1BuMg==
+
 "@expo/config-plugins@2.0.4":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@expo/config-plugins/-/config-plugins-2.0.4.tgz#955fd70a2aeefbe99ec71cecb1d7ea7b626dc79e"

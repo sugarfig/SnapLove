@@ -90,7 +90,7 @@ export default function FriendsScreen({ navigation }) {
           searchIconName="ios-checkmark"
           iconColor={Colors.snapblue}
           iconSize={30}
-          selectedIconName={"ios-checkmark-circle-outline"}
+          selectedIconName={"ios-radio-button-on-outline"}//does not change to radio:(
           unselectedIconName={"ios-radio-button-off-outline"}
           scrollViewHeight={250}
         />
