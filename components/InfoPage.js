@@ -312,6 +312,9 @@ const styles = StyleSheet.create({
     }
 });
 
+
+
+
 export default InfoPage;
 
 // import React, { useState, useEffect, useRef, Component } from "react";
