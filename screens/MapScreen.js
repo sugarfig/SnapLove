@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import Colors from "../constants/Colors";
-import { StyleSheet, View, Text, Image, ScrollView} from "react-native";
+import { StyleSheet, View, Text, Image, ScrollView, TouchableOpacity} from "react-native";
 import * as Location from "expo-location";
 import MapView, { Marker } from "react-native-maps";
-import { TouchableOpacity } from "react-native-gesture-handler";
+// import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 import colors from "../constants/Colors";
 import RBSheet from "react-native-raw-bottom-sheet";
@@ -25,7 +25,7 @@ const jobs  = require("../assets/jobOutline.png");
 const counsling  = require("../assets/counslingOutline.png");
 const internship  = require("../assets/internshipsOutline.png");
 const workshop  = require("../assets/workshopsOutline.png");
-const logo = require("../assets/SnapLoveLogo.png")
+const logo = require("../assets/SnapLoveLogo.png");
 
 var width = Dimensions.get('window').width; //full width
 // var height = Dimensions.get('window').height; //full height
@@ -135,26 +135,27 @@ export default function MapScreen({ navigation, route }) {
           >
             <Text style={styles.submitText}>suggest</Text>
           </TouchableOpacity>
+
           <View style={styles.dropDownContainer}>
             <TouchableOpacity
               style={styles.snapLoveButton}
               onPress={turnOnSnapLove}
             > 
-           
+              <Image style={{right:2,height:50,width:50}}source={logo}></Image>
               <View style={{display:'flex',justifyContent:'space-around'}}>
-                <View style={{backgroundColor:'white',width: 130, height: 50, borderRadius: 550, right:150 }}>
+                <View style={{backgroundColor:'white',width: 130, height: 50, borderRadius: 550, right:150, bottom: 50 }}>
                   <Text style={{textAlign:'center', display:'flex', marginTop: 15,color:'black',fontWeight:'bold',fontSize:18}}>SnapLOVE</Text>
                 </View>
-              <View style={styles.submitText}></View>
+                <View style={styles.submitText}></View>
                 
               </View>
         
             </TouchableOpacity>
             <TouchableOpacity
             style={styles.snapLoveButton2}
-          >
+            >
             <Ionicons style={{top:8,display: 'flex', alignSelf:'center',}} size={30} name="chevron-up-outline" color='white'></Ionicons>
-          </TouchableOpacity>
+            </TouchableOpacity>
           </View>
          
         </View>

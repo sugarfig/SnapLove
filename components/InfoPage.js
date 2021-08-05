@@ -64,9 +64,7 @@ function InfoPage(props) {
             {/* image */}
             <View>
                 <TouchableOpacity style={{height:140,width:140, borderRadius:70,left:10, backgroundColor:'#FF0A54', marginTop: 40,}} >
-                    <Image />
-                    {/* source = {require("../assets/avatar.png")} */}
-                    {/* style = {styles.storiesImage}  */}
+                <Image style={{height:132, width:132, borderRadius:66}} source={require("../assets/SnapLoveLogo.png")}></Image>
                 </TouchableOpacity>
     
             </View>
@@ -83,10 +81,6 @@ function InfoPage(props) {
                 <TouchableOpacity style = {styles.topRightButton}>
                     <Text style = {styles.topRightButtonText}>{props.topRightButton}</Text>
                 </TouchableOpacity>
-
-                {/* <TouchableOpacity style = {styles.iconButton}>
-                    <Ionicons name = {props.iconName}></Ionicons>
-                </TouchableOpacity> */}
             </View>
         </View>
             <Text style = {styles.buisnessDetails} > {props.buisnessDetails}</Text>
@@ -107,20 +101,9 @@ function InfoPage(props) {
                 </TouchableOpacity>
             </View>
 
-
-            {/* <CircleIcon text = {"..."}></CircleIcon>
-            <CircleIcon text = {"Invite Friends"}></CircleIcon>
-            <CircleIcon text= {"Going?"} onPress = {onPressInvite}> </CircleIcon> */}
         </View>
         
             
-        {/* </View> */}
-
-        {/* <View style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
-            <CircleIcon name='school-outline' text='scholarships'></CircleIcon>
-            <CircleIcon name='home-outline' text='workshops'></CircleIcon>
-            <CircleIcon name='search-outline' text='search'></CircleIcon>
-        </View> */}
     </View>
   );
 }

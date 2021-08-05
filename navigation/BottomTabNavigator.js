@@ -104,7 +104,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Spotlight"
-        component={EditCategoryScreen}
+        component= {EditCategoryScreen}//{SpotlightScreen}
         options={{
           title: "Spotlight",
           tabBarIcon: ({ focused }) => (

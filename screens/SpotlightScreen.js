@@ -7,6 +7,7 @@ import {
   Text,
   View,
   StatusBar,
+  Image,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
