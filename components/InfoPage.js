@@ -60,6 +60,12 @@ function InfoPage(props) {
             </View>
             </View>
         </Modal>
+        <LinearGradient
+            colors={['#C0FDFF', '#C8E7FF', 'rgba(222, 170, 255, 0.73)','rgba(255, 10, 84, 0.49)',, ]}
+            start={{x: 0.0, y: 1.0}} end={{x: 1.0, y: 1.0}}
+            style={{ height: 160, marginTop:10,}}
+            >      
+        </LinearGradient>
         <View style = {styles.buisnessContainer} >
             {/* image */}
             <View>
@@ -69,11 +75,10 @@ function InfoPage(props) {
     
             </View>
             {/* text */}
-            <View style={{marginLeft:30, marginTop: 50,}}>
+            <View style={{marginLeft:30,top:105,}}>
                 <Text style={styles.buisnessName}> {props.buisnessName} </Text>
                 <Text style = {styles.buisnessType}> {props.buisnessType} </Text>
-                <Text style = {styles.buisnessLocation}> {props.buisnessLocation} </Text>
-                <Text > {props.buisnessWebsite} </Text>
+                
                 {/* style= {styles.buisnessWebsite} */}
             </View>
             {/* save button */}
@@ -83,21 +88,36 @@ function InfoPage(props) {
                 </TouchableOpacity>
             </View>
         </View>
-            <Text style = {styles.buisnessDetails} > {props.buisnessDetails}</Text>
-        
-        <View>
+            <View style={{display:'flex',flexDirection:'row',marginLeft:130, marginTop:10,}}>
+                <Ionicons color={'#D0D4D7'} name={'location-outline'} size={15}/>
+                <Text style = {styles.buisnessLocation}> {props.buisnessLocation} </Text>
+            </View>
+            <View style={{display:'flex',flexDirection:'row',marginLeft:100, marginTop:10, justifyContent:'space-around'}}>
+                <View style={{display:'flex',flexDirection:'row'}}>
+                    <Ionicons color={'#D0D4D7'} name={'call-outline'} size={15}></Ionicons>
+                    <Text style={{color:'#11ADFF',marginLeft:5}}>{props.phone} </Text>
+                </View>
+                <View style={{display:'flex',flexDirection:'row'}}>
+                    <Ionicons color={'#D0D4D7'} name={'globe-outline'} size={15}></Ionicons>
+                    <Text style={{color:'#11ADFF',marginLeft:5}}>{props.buisnessWebsite} </Text>
+                </View>
+                
+                
+            </View>
             
-        </View>
-        <View style = {styles.buttons}>
+           
+            <Text style = {styles.buisnessDetails} > {props.buisnessDetails}</Text>
+            
+        <View style={{display:'flex',flexDirection:'row',justifyContent:'space-around',top:110}}>
         
             <View style={{display:'flex', alignItems:'center'}}>
                 <TouchableOpacity style={styles.button} onPress = {props.onPress}>
-                    <Text>Invite Friends</Text>
+                    <Text style={{fontWeight:'bold'}}>Invite Friends</Text>
                 </TouchableOpacity>
             </View>
             <View style={{display:'flex', alignItems:'center'}}>
-                <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.button}>
-                    <Text>Going?</Text>
+                <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.goingButton}>
+                    <Text style={{fontWeight:'bold',color:'white'}}>Going?</Text>
                 </TouchableOpacity>
             </View>
 
@@ -127,10 +147,18 @@ const styles = StyleSheet.create({
     },
     button:{
         height: 48,
-        width: 120,
+        width: 140,
         borderRadius: 25,
-        backgroundColor: '#C4C4C4',
-        marginBottom: 10,
+        backgroundColor: '#D0D4D7',
+        display:'flex',
+        justifyContent: 'center',
+        alignItems:'center',
+    },
+    goingButton:{
+        height: 48,
+        width: 140,
+        borderRadius: 25,
+        backgroundColor: '#11ADFF',
         display:'flex',
         justifyContent: 'center',
         alignItems:'center',
@@ -176,31 +204,6 @@ const styles = StyleSheet.create({
         textAlign: "center"
       },
 
-    // storiesButton: {
-    //     // position: "absolute",
-    //     width: 118.57,
-    //     height: 120,
-    //     left: 14,
-    //     top: 15,
-    //     backgroundColor: "transparent",
-    //     borderRadius: 80,
-    // },
-    // iconButton: {
-    //     // position: "absolute",
-    //     width: 11.91,
-    //     // height: 5.63,
-    //     left: 255,
-
-    //     fontFamily: "Roboto",
-    //     fontStyle: "normal",
-    //     fontWeight: "normal",
-    //     fontSize: 4,
-    //     lineHeight: 5,
-
-    //     color: "#000000",
-
-    // },
-
     topRightButtonText: {
         fontSize: 13,
         display: 'flex',
@@ -233,9 +236,8 @@ const styles = StyleSheet.create({
     buisnessDetails: {
         position: "absolute",
         width: 349,
-        
         left: 34,
-        top: 210,
+        top: 250,
 
         // fontFamily: "Avenir",
         fontStyle: "normal",
@@ -247,14 +249,11 @@ const styles = StyleSheet.create({
     },
 
     buisnessContainer: {
-        position: "absolute",
-        width: 414,
-        height: 155,
-        left: 0,
-        top: 23,
-        backgroundColor: "#C9E6FF",
+        position:'absolute',
         display:'flex',
-        flexDirection:'row'
+        flexDirection:'row',
+        marginTop:10,
+
     },
 
     buisnessType: {
@@ -262,7 +261,7 @@ const styles = StyleSheet.create({
         fontStyle: "normal",
         fontWeight: "normal",
         fontSize: 11,
-        color: "#A4A4A4",
+        
         marginBottom:5,
     },
 
@@ -271,7 +270,7 @@ const styles = StyleSheet.create({
         // fontFamily: 'Arial', //NEED TO FIGURE OUT HOW TO LOAD FONTTTT !!!
         fontStyle: "normal",
         fontWeight: '900',
-        fontSize: 18,
+        fontSize: 23,
         color: "#000000",
         marginBottom:5,
     },
@@ -279,11 +278,11 @@ const styles = StyleSheet.create({
     buisnessLocation: {
         // fontFamily: "Avenir",
         fontStyle: "normal",
-        fontWeight: '500',
-        fontSize: 14,
+        fontWeight: 'bold',
+        fontSize: 12,
         color: "#000000",
-        width: 160,
         marginBottom:5,
+       
     },
 
     buisnessWebsite: {
@@ -313,101 +312,3 @@ const styles = StyleSheet.create({
 });
 
 export default InfoPage;
-
-// import React, { useState, useEffect, useRef, Component } from "react";
-// import RBSheet from "react-native-raw-bottom-sheet";
-// import Colors from "../constants/Colors";
-// import { StyleSheet, View, Text, Image, Modal, Button } from "react-native";
-// import CircleIcon from '../components/CircleIcon';
-
-// export default class InfoPage extends Component {
-//     render() {
-//         return
-//         (
-//             <View>
-//             <View style={styles.resourcesContainer}>
-//                 <Ionicons
-//                     name={"menu-outline"}
-//                     size={40}
-//                     color={Colors.snapblue}
-//                     style={{ marginTop: 5, marginLeft: 3 }}
-//                     onPress={() => refRBSheet.current.open()}
-//                 />
-//             </View>
-//             <RBSheet
-//                 height={400}
-//                 ref={refRBSheet}
-//                 closeOnDragDown={true}
-//                 closeOnPressMask={false}
-//                 customStyles={{
-//                 wrapper: {
-//                     backgroundColor: "transparent"
-//                 },
-//                 draggableIcon: {
-//                     backgroundColor: "#000"
-//                 }
-//                 }}
-//             >
-//                 <View>
-//                 <Text style={{marginBottom: 20, marginLeft: 10, fontSize: 25}}>Find Resources</Text>
-//                 <View style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
-//                     <CircleIcon name='school-outline' text='scholarships'></CircleIcon>
-//                     <CircleIcon name='home-outline' text='workshops'></CircleIcon>
-//                     <CircleIcon name='search-outline' text='search'></CircleIcon>
-//                 </View>
-                
-//                 </View>
-                
-//             </RBSheet>
-//             </View>
-//         );
-//     }
-
-// }
-
-// const styles = StyleSheet.create({
-//     map: {
-//       ...StyleSheet.absoluteFillObject,
-//     },
-//     locateButtonContainer: {
-//       position: "absolute",
-//       bottom: 60,
-//       right: 20,
-//     },
-//     locateButton: {
-//       height: 50,
-//       width: 50,
-//       borderRadius: 25,
-//       backgroundColor: colors.snapyellow,
-//     },
-//     submitButtomContainer: {
-//       position: "absolute",
-//       top: 20,
-//       right: 20,
-//       display: 'flex',
-//       alignSelf: 'flex-end',
-      
-//     },
-//     submitButton: {
-//       height: 50,
-//       width: 50,
-//       borderRadius: 25,
-//       backgroundColor: 'gray',
-//       marginBottom: 10,
-//     },
-//     submitText: {
-//       fontSize: 13,
-//       top: 15,
-//       display: 'flex',
-//       alignSelf:'center',
-      
-//     },
-//     resourcesContainer: {
-//       width: width,
-//       backgroundColor: "white",
-//       display:'flex',
-//       alignItems: 'center',
-//       top: 676,
-      
-//     }
-//   });

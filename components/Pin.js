@@ -27,7 +27,7 @@ function Pin(props){
                   style={{width: 60, height: 60}}
                   resizeMode="contain"></Image>
                 </TouchableOpacity>
-            </LinearGradient>
+          </LinearGradient>
           
       </Marker>
     )

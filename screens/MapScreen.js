@@ -174,7 +174,7 @@ export default function MapScreen({ navigation, route }) {
           </View>
 
           <RBSheet
-            height={400}
+            height={450}
             ref={refRBSheet}
             closeOnDragDown={true}
             closeOnPressMask={true}
@@ -208,6 +208,7 @@ export default function MapScreen({ navigation, route }) {
             (<InfoPage 
             buisnessName = {coordinates[currOrgData].buisnessName} 
             buisnessType = {coordinates[currOrgData].buisnessType} 
+            phone={coordinates[currOrgData].phone}
             buisnessLocation = {coordinates[currOrgData].buisnessLocation} 
             buisnessWebsite = {coordinates[currOrgData].buisnessWebsite}
             buisnessDetails = {coordinates[currOrgData].buisnessDetails}
