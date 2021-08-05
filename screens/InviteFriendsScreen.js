@@ -21,6 +21,8 @@ export default function InviteFriendsScreen({navigation}) {
     const [currUser, setCurrUser] = useState(null);
     const [imageURI, setImageURI] = useState(null);
     const [displayName, setDisplayName] = useState("");
+    
+
     useEffect(() => {
         // Download curr user info
         // (and listen for future updates)
