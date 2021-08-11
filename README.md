@@ -23,18 +23,22 @@ Here is the link to our feature proposal: https://youtu.be/u50Md2KG0HA
 # Installation & Setup
 
 ## Install Expo Go
-1. Install the app [Expo Go](https://expo.dev/client) for IOS and Andriod.
-
-```
-use code snippets if you need
-```
+1. Install the application [Expo Go](https://expo.dev/client) for IOS and Andriod.
+2. Fork and clone SnapLOVE repository.
 
 ## Set up
-1. Describe. 
+1. Install dependencies and type
 
 ```
-use code snippets if you need
+yarn install
 ```
+in terminal.
+2. Run project by typing
+```
+expo start
+```
+in terminal.
+3. Scan QR code in browser with Expo Go appication.
 
 # Technologies Used
 
