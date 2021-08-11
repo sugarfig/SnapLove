@@ -47,7 +47,7 @@ expo start
 
 | Name / Role      | Link to GitHub / LinkedIn |
 | ----------- | ----------- |
-| Ashley  / Engineer    | [GitHub](https://github.com/3100ashley) | [LinkedIn](https://www.linkedin.com/in/amanese31/)       |
+| Ashley  / Engineer    | [GitHub](https://github.com/3100ashley)/[LinkedIn](https://www.linkedin.com/in/amanese31/)       |
 | Erica / Engineer   | [GitHub](https://github.com/sugarfig)      |
 
 
