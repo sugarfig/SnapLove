@@ -8,11 +8,15 @@ Here is the link to our feature proposal: https://youtu.be/u50Md2KG0HA
 
 # Main Features
 
-## Ability to share events with your friends![Snapchat-1349505628](https://user-images.githubusercontent.com/81268104/128973558-30cd9ba8-47cc-46c5-b289-d6e06f336bdb.jpg)
- 
-Show off the main features of the React Native prototype.
+## Ability to share events with your friends
+![Snapchat-1349505628](https://user-images.githubusercontent.com/81268104/128973558-30cd9ba8-47cc-46c5-b289-d6e06f336bdb.jpg)
+![Snapchat-1240128038](https://user-images.githubusercontent.com/81268104/128973642-4374346f-50c7-4223-bb6d-9430cc55eaa1.jpg)
+![Snapchat-1370779348](https://user-images.githubusercontent.com/81268104/128973699-a8684daf-5836-404a-9a43-2f1179b77691.jpg)
+![Snapchat-285762488](https://user-images.githubusercontent.com/81268104/128973710-aa546560-a41d-40b0-8e20-240aa09ba7aa.jpg)
+![Snapchat-918222992](https://user-images.githubusercontent.com/81268104/128973724-8a54f744-2c0c-4a35-83e3-070f577737e7.jpg)
+![Snapchat-1122081809](https://user-images.githubusercontent.com/81268104/128973738-a365a309-9d35-41c0-b15b-1356eb4f5d16.jpg)
+![Snapchat-1347056176](https://user-images.githubusercontent.com/81268104/128973742-75d78449-1ed8-43ef-9c8a-1a92ef8a9412.jpg)
 
-**Add Screenshots or GIFs!!! —> honestly the most important part!**
 
 
 # Installation & Setup
