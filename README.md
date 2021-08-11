@@ -22,8 +22,8 @@ Here is the link to our feature proposal: https://youtu.be/u50Md2KG0HA
 
 # Installation & Setup
 
-## Install
-1. Describe. 
+## Install Expo Go
+1. Install the app [Expo Go](https://expo.dev/client) for IOS and Andriod.
 
 ```
 use code snippets if you need
