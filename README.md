@@ -27,17 +27,15 @@ Here is the link to our feature proposal: https://youtu.be/u50Md2KG0HA
 2. Fork and clone SnapLOVE repository.
 
 ## Set up
-1. Install dependencies and type
+1. Install dependencies and type in terminal
 
 ```
 yarn install
 ```
-in terminal.
-2. Run project by typing
+2. Run project by typing in terminal
 ```
 expo start
 ```
-in terminal.
 3. Scan QR code in browser with Expo Go appication.
 
 # Technologies Used
