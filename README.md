@@ -40,17 +40,19 @@ expo start
 
 # Technologies Used
 
-* List them here.... 
-* 
+* Expo Go
+* React Native
+* Firebase
 
 # Project Team Members 
 
 | Name / Role      | Link to GitHub / LinkedIn |
 | ----------- | ----------- |
-| Ashley  / Engineer    | [GitHub](https://github.com/3100ashley)/[LinkedIn](https://www.linkedin.com/in/amanese31/)       |
+| Ashley  / Engineer    | [GitHub](https://github.com/3100ashley) / [LinkedIn](https://www.linkedin.com/in/amanese31/)       |
 | Erica / Engineer   | [GitHub](https://github.com/sugarfig)      |
 
 
 #  Acknowledgements
 
-Cite and link any code you used from other people!
+[React Native Raw Bottom Sheet](https://www.npmjs.com/package/react-native-raw-bottom-sheet)
+[Starter Code](https://github.com/Snap-Engineering-Academy-2021/chapsnat-sandbox)
