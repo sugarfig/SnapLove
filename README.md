@@ -9,7 +9,7 @@ Here is the link to our feature proposal: https://youtu.be/u50Md2KG0HA
 # Main Features
 
 ## Ability to share events with your friends
-![Snapchat-1349505628](https://user-images.githubusercontent.com/81268104/128973558-30cd9ba8-47cc-46c5-b289-d6e06f336bdb.jpg =100x20)
+![Snapchat-1349505628](https://user-images.githubusercontent.com/81268104/128973558-30cd9ba8-47cc-46c5-b289-d6e06f336bdb.jpg){width=50%}
 ![Snapchat-918222992](https://user-images.githubusercontent.com/81268104/128973724-8a54f744-2c0c-4a35-83e3-070f577737e7.jpg)
 ![Snapchat-1370779348](https://user-images.githubusercontent.com/81268104/128973699-a8684daf-5836-404a-9a43-2f1179b77691.jpg)
 ![Snapchat-1240128038](https://user-images.githubusercontent.com/81268104/128973642-4374346f-50c7-4223-bb6d-9430cc55eaa1.jpg)
