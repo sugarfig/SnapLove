@@ -85,7 +85,7 @@ export default function SignupScreen() {
       <TouchableOpacity
         style={[styles.buttonContainer, styles.signupButton]}
         onPress={() => {
-          navigation.navigate("Signup");
+          onPressCreate()
         }}
       >
         <Text style={styles.signupText}>Sign up</Text>

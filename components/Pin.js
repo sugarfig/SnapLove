@@ -26,8 +26,9 @@ function Pin(props){
                   <Image  source={props.icon}
                   style={{width: 60, height: 60}}
                   resizeMode="contain"></Image>
+                  
                 </TouchableOpacity>
-            </LinearGradient>
+          </LinearGradient>
           
       </Marker>
     )

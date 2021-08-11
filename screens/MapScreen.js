@@ -15,12 +15,13 @@ import Pin from '../components/Pin'
 import Card from '../components/Card'
 import DropDownPicker from 'react-native-dropdown-picker';
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
-
+import BitmojiMarker from '../components/BitmojiMarker'
 import InfoPage from "../components/InfoPage";
+import Bitmojis from "../constants/Bitmojis"
 
 
 
-const bitmoji = require("../assets/bitmoji.png");
+const ashley = require("../assets/ashley.png");
 const jobs  = require("../assets/jobOutline.png");
 const counsling  = require("../assets/counslingOutline.png");
 const internship  = require("../assets/internshipsOutline.png");
@@ -95,20 +96,25 @@ export default function MapScreen({ navigation, route }) {
               coordinate={currLocation}
               title={"Current Location"}
               description={"You are here!"}
-            ><Image source={bitmoji}
+            ><Image source={ashley}
               style={{width: 125, height: 125}}
               resizeMode="contain"></Image>
             </Marker>
+            <View>
+            {Bitmojis.map(bitmoji => {
+                return <BitmojiMarker key={bitmoji.key} location={bitmoji.coodinate} source={bitmoji.image}></BitmojiMarker>
+            })}
+          </View>
           </View>
           
          
         ) : null}
         {(currLocation && snapLove) ? (
-          <View>
-            {coordinates.map(coor => {
-              return <Pin key={coor.key} title={coor.key} setCurrOrgData={setCurrOrgData} index={coor.index} refRBSheet={refRBSheet} setCurrOrg={setCurrOrg} location={coor.coordinate}  icon={coor.icon}></Pin>
-            })}
-          </View>
+            <View>
+              {coordinates.map(coor => {
+                return <Pin key={coor.key} title={coor.key} setCurrOrgData={setCurrOrgData} index={coor.index} refRBSheet={refRBSheet} setCurrOrg={setCurrOrg} location={coor.coordinate}  icon={coor.icon}></Pin>
+              })}
+            </View>
         ) : null}
 
       </MapView>
@@ -174,7 +180,7 @@ export default function MapScreen({ navigation, route }) {
           </View>
 
           <RBSheet
-            height={400}
+            height={450}
             ref={refRBSheet}
             closeOnDragDown={true}
             closeOnPressMask={true}
@@ -208,6 +214,7 @@ export default function MapScreen({ navigation, route }) {
             (<InfoPage 
             buisnessName = {coordinates[currOrgData].buisnessName} 
             buisnessType = {coordinates[currOrgData].buisnessType} 
+            phone={coordinates[currOrgData].phone}
             buisnessLocation = {coordinates[currOrgData].buisnessLocation} 
             buisnessWebsite = {coordinates[currOrgData].buisnessWebsite}
             buisnessDetails = {coordinates[currOrgData].buisnessDetails}

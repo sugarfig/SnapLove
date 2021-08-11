@@ -148,7 +148,7 @@ export default function InviteFriendsScreen({navigation, route}) {
       padding: 10,
     },
     inputContainer: {
-      backgroundColor: "#FFFFFF",
+      backgroundColor: "red",
       borderRadius: 8,
       height: 45,
       margin: offset,
