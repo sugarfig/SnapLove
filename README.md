@@ -54,5 +54,5 @@ expo start
 
 #  Acknowledgements
 
-[React Native Raw Bottom Sheet](https://www.npmjs.com/package/react-native-raw-bottom-sheet)
-[Starter Code](https://github.com/Snap-Engineering-Academy-2021/chapsnat-sandbox)
+*[React Native Raw Bottom Sheet](https://www.npmjs.com/package/react-native-raw-bottom-sheet)
+*[Starter Code](https://github.com/Snap-Engineering-Academy-2021/chapsnat-sandbox)
